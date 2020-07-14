@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<form method="post">{% csrf_token %}
+		Arquivo de saída (css) <br><br>
+		<input type="submit" value="Gerar arquivo" name="export"><br><br>
+	</form>
+{% endblock %}
+

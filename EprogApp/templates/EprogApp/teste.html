@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+
+</head>
+<body>
+    <h1> Testando</h1>
+
+<!--{{ object_list_Eprog }}-->
+    {{ objetinho2.Porcentagem }} --- {{ objetinho2.Corretas }} --- {{ objetinho2.Incorretas }}
+    <br>
+{% for instance_Eprog in object_list_Eprog %}
+<p> {{ instance_Eprog.id }} - {{ instance_Eprog.Topico }} </p>
+{% endfor %}
+<br><br>
+
+
+{% for instance_Calculos in object_list_Calculos %}
+<p> {{ instance_Calculos.id }} - {{ instance_Calculos.Corretas }} </p>
+{% endfor %}
+
+
+</body>
+</html>

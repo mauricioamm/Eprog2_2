@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br"
+
+<html>
+<head>
+	<meta charset= "utf-8">
+	<title>Testando</title>
+	<link rel="stylesheet" href="{% static 'EprogApp/css/principal.css' %}">
+
+</head>
+<body>
+
+
+</body>
+	<div class="container">
+			<section>
+			<!--<h3>Eprog -Versão Piloto 1</h3>-->
+			
+			<form method="post">
+				{% csrf_token %}
+				<input type="submit" class="btn inserir" value="Novo" name="Novo">
+				<input type="submit" class="btn salvar" value="Salvar" name="Salvar">
+				<input type="submit" class="btn excluir" value="Excluir" name="Excluir">
+				<input type="submit" class="btn_seta" value="<<" name="primeiro">
+				<input type="submit" class="btn_seta" value="<" name="anterior">
+				<input type="submit" class="btn_seta" value=">"  name="proximo">
+				<input type="submit" class="btn_seta" value=">>" name="ultimo">
+				<br>
+				<input type="submit" class="btn_Testar" value="Testar" name="Testar">
+				<input type="submit" class="btn_Resposta" value="Resposta" name="Resposta">
+				Sua avaliação:
+				<input type="submit" class="btn_Correta" value="Correta/Completa" name="Correta">
+				<input type="submit" class="btn_Incorreta" value="Incorreta/Incompleta" name="Incorreta">
+				<br>
+				<br>
+					<p style="font-family:Arial; color:Black; font-size: 16px;  font-weight: bold">
+						Tópico:<textarea class="Topico" rows="3" cols="40">{{form.Topico.value}}</textarea> <br>
+						<br>
+						Textão: <textarea class="Textao" rows="7" cols="40"> </textarea> <br>
+						<input type="submit" class="btn_SuaResposta" value="Sua Resposta" name="Sua_Resposta">
+						<br>
+						Dúvidas:<textarea class="DuvidaComent" rows="3" cols="35"> </textarea>
+						<input type="submit" class="SalvarDuvida" value="Salvar" name="SalvarDuvida">
+					</p>
+				<br>
+			</form>
+			</section>
+
+			<div class="bloco2">
+				Porcentagem de respostas corretas: <input type="text" name="porcentagem" class="porcentagem" value=" ">
+				<br>
+				<br>
+				Marcador1:<input type="text" name="Marcador2" class="marcadores" value=" ">
+				Marcador2:<input type="text" name="Marcador2" class="marcadores" value=" ">
+				Marcador3:<input type="text" name="Marcador2" class="marcadores" value=" ">
+				Marcador4:<input type="text" name="Marcador2" class="marcadores" value=" ">
+				Marcador5:<input type="text" name="Marcador2" class="marcadores" value=" ">
+				<input type="submit" class="MostrarMarcadores" value="Mostrar" name="MostrarMarcadores">
+				<input type="submit" class="SalvarMarcadores" value="Salvar" name="SalvarMarcadores">
+				<br>
+				<br>
+				<!--
+					<div class="figurinha">
+					{% if objetinho.OndeFigura1 %}
+                    <img src="{{objetinho.OndeFigura1}}" width="300" height="300" ><br>
+                	{% endif %}
+				</div>
+				<input type="submit" class="MostrarFigura" value="Mostrar" name="MostrarFigura">
+				<br>
+				-->
+
+			</div>
+
+	</div>
+</html>

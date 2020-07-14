@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+	{% load static %}
+<html lang="pt-br">
+<head>
+	<title>Testando</title>
+	<meta charset="utf-8">
+	<!--<link rel="stylesheet" href="principal.css"/>-->
+	<!--<link rel="stylesheet" href="{% static 'principal.css' %}">-->
+	<!--<link rel="stylesheet" href="{% static 'EprogApp/css/principal.css' %}">-->
+	<style>
+
+div.content{
+	
+	float:left;
+	margin:10px;
+	margin:4px;
+	padding: 7px;
+    font-family: Arial;
+    color: Black;
+    font-size: 17px bold;
+}
+
+div#topo1{
+	height:27px;
+	width:695px;
+	background-color:#5F9EA0;	 	
+	/*border-radius: 2px;*/
+	padding: 10px;
+	color: White;
+	
+}	
+
+div#topo2{
+	height:36px;
+	width:572px;
+	background-color:#A9A9A9;	
+	/*border-radius: 2px;*/
+	padding: 5px;
+	/*float: right;*/
+}
+
+div#esquerdo{
+	height:533px;
+	width:700px;
+	background-color:#D2B48C;
+	/*border:1px solid #000000;*/
+	background-repeat: no-repeat;
+    background-position: 10% 50%;
+    background-size: 20px;
+}	
+
+div#direito{
+	height:533px;
+	width:570px;
+	background-color:#D2B48C;
+	/*padding: 10px;*/
+	/*border:1px solid #000000;*/
+}	
+
+.btn {
+  width: 120px;
+  height: 30px;
+  border: 1px solid #ddd;    
+}
+
+.inserir{
+  /* background-image: url(../_img/icone-salvar.png);*/
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn_salvar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #46aD7a;
+  color: #fff;
+  cursor: pointer;
+}
+  
+.limpar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.excluir {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #ad4656;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn_seta{
+  width: 50px;
+  height: 30px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #661a;
+  color: White;
+  font-size: 17px;
+  cursor: pointer;    
+}
+
+
+.btn_Testar{
+  /* background-image: url(../_img/icone-salvar.png);*/
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn_Resposta{
+  /* background-image: url(../_img/icone-salvar.png);*/
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;;
+}
+
+.Topico {
+  width:680px;
+  height: 70px;
+  font-family: Arial;
+  color: Blue;
+  font-size: 17px;
+  border-radius: 3px;
+  margin-top: 1px;
+  border: 2px solid #ccc;  
+  padding: 5px;
+  margin:2px;
+}
+
+.Textao {
+  width:680px;
+  height: 270px;
+  font-family: Arial;
+  color: Black;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-top: 1px;
+  border: 2px solid #ccc;
+  padding: 5px;
+  float: left;
+  margin:2px;
+}
+
+.btn_SuaResposta{
+  background-color: #46aD7a;
+  color: #fff;
+}
+  
+ .DuvidaComent{
+  width:550px;
+  height: 65px;
+  font-family: Arial;
+  color: Black;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-top: 3px;
+  border: 2px solid #ccc;
+}
+
+.SuaResposta{
+ width:685px;
+  height: 85px;
+  font-family: Arial;
+  color: Black;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-top: 3px;
+  border: 2px solid #ccc;
+}
+
+.OndeFigura1{
+  width:300px;
+  height: 20px;
+  font-family: Arial;
+  color: Green;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-top: 3px;
+  border: 2px solid #ccc;   
+}
+  
+  .SalvarDuvida{
+   /* background-image: url(../_img/icone-salvar.png); */
+  width: 50px;
+  height: 25px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  cursor: pointer;
+  background-color: #46aD7a;
+  color: #fff;
+  cursor: pointer;
+
+}
+
+.figurinha {
+	margin-top: 12px;
+	margin-left: 40px;
+}
+
+.porcentagem{
+  width: 30px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 15px;
+}
+	</style>
+
+</head>
+
+
+<body>
+    <!--{{ objetinho2.Porcentagem }} --- {{ objetinho2.Corretas }} --- {{ objetinho2.Incorretas }}-->
+	<form method="post">
+	{% csrf_token %}
+		<div class= "content" id="topo1">
+			<input type="submit" class="btn_Testar" value="Testar" name="Testar">
+			<input type="submit" class="btn_Resposta" value="Resposta" name="Resposta">
+			Sua avaliação:
+			<input type="submit" class="btn_Correta" value="Correta/Completa" name="Correta">
+			<input type="submit" class="btn_Incorreta" value="Incorreta/Incompleta" name="Incorreta">
+			<br>
+
+		</div>
+		<div class= "content" id="topo2">
+			    <!--<textarea class="porcentagem" name="Ordem">{{ objetinho.Ordem }}</textarea>
+				Acertou:<textarea class="porcentagem" name="Acertou">{{ objetinho.Acertou }}</textarea>
+				Jafoi:<textarea class="porcentagem" name="Jafoi">{{ objetinho.Jafoi }}</textarea>
+				<input type="text" name="tentativa" class="porcentagem" value= "{{ objetinho2.Ordem }} ">-->
+				Ordem:<input type="text" name="Ordem" class="porcentagem" value= "{{ objetinho.Ordem }} " readonly>
+				<!--Porcentagem: <input type="text" class="porcentagem" name="porcentagem" value= "{{ objetinho2.Porcentagem }} "> <br>-->
+									<!--onclick= "somar()">
+    								<div id="res">0 </div>-->
+				Corretas
+				<input type="text" name="corretas" class="porcentagem" value= "{{ objetinho2.Corretas }} " readonly>
+				X
+				<input type="text" name="incorretas" class="porcentagem" value="{{ objetinho2.Incorretas }}" readonly>
+				Incorretas
+
+		</div>
+		<div class= "content" id="esquerdo">
+			<label for="esquerdo">Tópico:</label><br><textarea class="Topico" name="Topico" readonly>{{form.Topico.value}}</textarea><br>
+			<!--Texto:<br><textarea class="Textao" name="Textao"></textarea><br><br>-->
+			Sua Resposta:<br><textarea class="SuaResposta" name="SuaResposta">{{form.SuaResposta.value}}</textarea><br><br>
+		</div>
+		<div class= "content" id="direito">
+
+
+		</div>
+	</form>
+	<script>
+        var soma= 0
+        totalcorretas= 0
+        totalincorretas= 0
+        campoquatro_n= 0
+
+		function campoquatro() {
+			campoquatro_n= campoquatro_n +1
+            campoquatro_id.innerHTML = `${campoquatro_n}`
+		}
+
+        function somar() {
+            //var tn1 = window.document.getElementById('txtn1')
+            //var tn2 = window.document.getElementById('txtn2')
+            //var res= window.document.getElementById('res')
+            //var n1= Number(tn1.value)
+            //var n2= Number(tn2.value)
+            //var s= n1 + n2
+            soma= soma + 1
+            res.innerHTML = `${soma}`
+        }
+    </script>
+
+</body>
+
+
+
+
+
+</html>

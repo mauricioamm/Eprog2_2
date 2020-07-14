@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br"
+
+<html>
+<head>
+	<meta charset= "utf-8">
+	<title>Testando</title>
+	<!--<link rel="stylesheet" href="{% static 'EprogApp/css/principal.css' %}">-->
+
+</head>
+<body>
+
+
+</body>
+	<div class="container">
+			<section>
+			<h3>Eprog -Versão Piloto 1</h3>
+				<form method="post">
+					{% csrf_token %}
+			    	{{ form.as_p }}
+    				<button type="submit"> Salvar </button>
+				</form>
+			</section>
+
+	</div>
+</html>

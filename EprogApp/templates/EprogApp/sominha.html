@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<title>Formulários</title>
+	<meta charset= "utf-8">
+</head>
+
+<body>
+	<!--action ="/sominha2"-->
+	<form method="POST">
+    	{% csrf_token %}
+		Primeiro valor = <input type="text" autocomplete="off" name="num1" value= {{val1}}><br>
+    	Segundo valor = <input type="text" autocomplete="off" name="num2" value= {{val2}}><br>
+		<input type="submit" value="responder" name="responder"><br>
+		Soma = {{ Resultado }}<br><br>
+	</form>
+
+</body>
+
+</html>

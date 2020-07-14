@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset= "utf-8">
+	<title>Formularios em HTML5</title>
+	<link rel="Stylesheet" href="css/Aula 18- Formularios- Parte 3.css">
+    <style>
+      body {
+  background-color: #ccc;
+  font-family: Verdana;
+  font-size: 100%;
+  color: #fff;
+}
+
+form {
+  margin: auto;
+  width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #172367;
+  margin-top: 100px;
+  text-align: center;
+
+}
+
+.campo {
+  width: 200px;
+  height: 25px;
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+a {
+  color: #fff;
+}
+
+.btn {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #ddd;
+}
+
+div.entrada {
+  background-position: 50% 50%;
+  color: Blue;
+  font-size: 22px bold;
+}
+
+</style>
+</head>
+<body>
+  <div class= "entrada">
+      Eprog 1.0
+  </div>
+  {% if form.errors %}
+    <p>Nome ou senha incorretas. Por favor, tente novamente.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Eprog 1.0</p>
+    {% else %}
+      <p>Por favor, faça o login para acessar essa página.</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+
+  <!--
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+-->
+
+
+</body>
+
+</html>

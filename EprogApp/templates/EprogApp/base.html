@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset= "utf-8">
+	<title>Eprog 1.0</title>
+	<style>
+	* {
+  margin: 0;
+  padding: 0;
+} 
+
+body {
+  background-color: #222;
+  font-family: Verdana;
+  font-size: 100%;
+  color: #fff;
+  }
+
+.titulo {
+  font-family: Verdana;
+  font-size: 100%;
+  color: Blue;
+
+}
+
+.container {
+  width: 1200px;
+  padding: 2px;
+  margin: auto;   
+  margin-top: 25px;
+}
+
+nav {
+  width: 300px;
+  height: 495px;
+  background-color: #555;
+  box-sizing: border-box;
+  padding: 20px;
+  float: left;
+  margin: auto;
+}
+
+section {
+  background-color: #fff;
+  color: #333;
+  width: 870px;
+  height: 492px;
+  margin: auto;
+  margin-left: 20px;
+  margin-top: 0px;
+  float: left;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+ul.menu {
+  list-style-type: none;  
+  text-decoration: none;
+  height: 15px;
+}
+
+ul.menu li {
+  width: 250px;
+  height: 15px;
+  line-height: 40px;
+  box-sizing: border-box;
+  padding-left: 10px;
+  background-color: #777;  
+  margin-top: 5px;
+  cursor: pointer;
+  list-style: none;
+  display: inline-table;
+}
+
+ul.menu li:hover {
+  /* background-color: #888;*/
+  /*text-decoration: none;*/
+  background-color: #555;
+  color: white;
+  height: 15px;
+}
+
+li a {
+  display: block;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  height: 35px;
+}
+
+.btn {
+  width: 120px;
+  height: 20px;
+  border: 1px solid #ddd;  
+}
+
+.salvar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #46aD7a;
+  color: #fff;
+  cursor: pointer;
+}
+  
+.limpar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.excluir {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #ad4656;
+  color: #fff;
+  cursor: pointer;
+}
+
+.campo {
+  width: 500px;
+  height: 30px;
+  border-radius: 3px;
+  color: #fff;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  
+}
+	
+	
+	
+	
+	</style>
+	
+	
+</head>
+
+<body>
+	<div class="container">
+		<nav>
+			<ul class="menu">				
+				<li><a href="{% url 'url_entrada'%}"> 				Início 			</a></li>					
+				<li><a href="{% url 'url_Entrada_login'%}"> 		Login 			</a></li>		
+				<li><a href="{% url 'url_Entrada_Iniciar'%}"> 		Iniciar Sessão 			</a></li>		
+				<li><a href="{% url 'url_Entrada_configuracoes'%}"> Configurações 			</a></li>		
+				<li><a href="{% url 'url_Entrada_relatorios'%}"> 	Relatórios 			</a></li>					
+				<li><a href="{% url 'url_Entrada_sobre'%}"> 		Sobre 			</a></li>									
+				<li><a href="{% url 'admin:index' %}"> 				admin 			</a></li>
+				<li><a href="{% url 'logout' %}"> 					Sair 			</a></li>
+				
+			</ul>
+		</nav>
+	</div>		
+		
+	<!--
+	<nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="waves-effect waves-light btn">Button</a></li>
+        <li><a class="waves-effect waves-light btn">Button <i class="material-icons right">cloud</i></a></li>
+        <li><a class="waves-effect waves-light btn-large">Large Button</a></li>
+      </ul>
+    </div>
+  </nav>-->
+		
+	<section>		
+		<div class= "titulo"> 
+			<h1>Eprog</h1>
+			<br>
+			<br>
+		</div>
+					
+		{% block content %}
+			replace me...
+		{% endblock %}			
+	</section>
+</body>
+</html>

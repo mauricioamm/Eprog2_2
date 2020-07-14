@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<form method="post">{% csrf_token %}		
+		Oi, {{ user.get_username }}<br><br>
+		<input type="submit" value="Começar Sessão" name="comecar_sessao"><br><br>
+		<!--Usuário:{{ user.get_username }}<br>
+		Banco:-->
+	</form>
+{% endblock %}
+
+
+
+
