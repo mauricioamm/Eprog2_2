@@ -233,7 +233,7 @@ def Entrada_sobre(request):
 
 def agora(request):
     agorinha = datetime.datetime.now()
-    msg = f'Hoje eh {agorinha}'
+    #msg = f'Hoje eh {agorinha}'
     return HttpResponse(msg, content_type='text/plain')
 
 def sominha(request):
