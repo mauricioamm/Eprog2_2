@@ -79,6 +79,9 @@ WSGI_APPLICATION = 'EprogProj.wsgi.application'
 DATABASES = {
     'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),},
     'mauricioamm': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'mauricioamm.sqlite3'), },
+    'ellen': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'ellen.sqlite3'), },
+    'lohana': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'lohana.sqlite3'), },
+    'gabriela': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'gabriela.sqlite3'), },
     'john': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'john.sqlite3'), },
     'paul': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'paul.sqlite3'), },
     'george': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': os.path.join(BASE_DIR, 'george.sqlite3'), },
