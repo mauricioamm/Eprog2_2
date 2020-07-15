@@ -146,7 +146,7 @@ def Entrada_Iniciar(request):
         banquinho = str(user)
 
         # mudar sessao - inicio
-        objetinho_sessao = SessaoModel.objetos.get(pk=1)
+        objetinho_sessao = SessaoModel.objetos.using(banquinho).get(pk=1)
         objeto_procedimento = ProcedimentoModel.objetos.using(banquinho).get(pk=1)
         SessaoAntiga = objeto_procedimento.SessaoAtual
         n_SessaoAntiga = int(SessaoAntiga)
@@ -231,10 +231,10 @@ def Entrada_relatorios(request):
 def Entrada_sobre(request):
     return render(request, "EprogApp/Entrada_sobre.html")
 
-def agora(request):
-    agorinha = datetime.datetime.now()
+#def agora(request):
+#    agorinha = datetime.datetime.now()
     #msg = f'Hoje eh {agorinha}'
-    return HttpResponse(msg, content_type='text/plain')
+#    return HttpResponse(msg, content_type='text/plain')
 
 def sominha(request):
     if request.POST.get('responder'):
@@ -277,10 +277,12 @@ def listagem(request):
     return render(request, 'EprogApp/listagem.html', context)
 
 def entrada(request):
-
+    user = request.user
+    banquinho = str(user)
     if request.POST.get('comecar_sessao'):
         campo = 'id'
-        obj = EprogModel.objetos.last()
+        obj = EprogModel.objetos.using(banquinho).last()
+
         valor_campo = getattr(obj, campo)
         total = valor_campo
         n_rand = randint(1, total)
@@ -315,7 +317,9 @@ def update(request, pk):
 """
 
 def delete(request, pk):
-    lista = EprogModel.objetos.get(pk=pk)
+    user = request.user
+    banquinho = str(user)
+    lista = EprogModel.objetos.using('banquinho').get(pk=pk)
     lista.delete()
     return redirect('url_listagem')
 
@@ -337,7 +341,7 @@ def comecar_sessao_view(request):
     user = request.user
     banquinho = str(user)
     #objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
-    objetinho_sessao = SessaoModel.objetos.get(pk=1)
+    objetinho_sessao = SessaoModel.objetos.using(banquinho).get(pk=1)
     n_tentativa = objetinho_sessao.NTopico
     objetinho = EprogModel.objetos.using(banquinho).get(pk=n_tentativa)
     form = EprogForm(request.POST or None, instance=objetinho)
@@ -346,12 +350,14 @@ def comecar_sessao_view(request):
 
     if request.POST.get('comecar_sessao'):
         context = {}
-
-        objetinho_sessao = SessaoModel.objetos.get(pk=1)
+        user = request.user
+        banquinho = str(user)
+        obj = EprogModel.objetos.using(banquinho).last()
+        objetinho_sessao = SessaoModel.objetos.using(banquinho).get(pk=1)
         n_tentativa = objetinho_sessao.NTopico
         #data = {}
         #pk = n_tentativa
-        objetinho = EprogModel.objetos.get(pk=n_tentativa)
+        objetinho = EprogModel.objetos.using('banquinho').get(pk=n_tentativa)
         form = EprogForm(request.POST or None, instance=objetinho)
         #data['form'] = form
         #data['objetinho'] = objetinho
@@ -393,7 +399,7 @@ def principal(request, pk):
 
     if request.POST.get('Salvar'):
         data = {}
-        objetinho = EprogModel.objetos.get(pk=pk)
+        objetinho = EprogModel.objetos.using('banquinho').get(pk=pk)
         form = EprogForm(request.POST or None, instance=objetinho)
         if form.is_valid():
             form.save()
@@ -413,10 +419,10 @@ def principal(request, pk):
 
     if request.POST.get('proximo'):
         campo = 'id'
-        obj_ultimo = EprogModel.objetos.last()
+        obj_ultimo = EprogModel.objetos.using('banquinho').last()
         valor_ultimo = getattr(obj_ultimo, campo)
         total = valor_ultimo
-        obj_atual = EprogModel.objetos.get(pk=pk)
+        obj_atual = EprogModel.objetos.using('banquinho').get(pk=pk)
         valor_campo = getattr(obj_atual, campo)
         n = valor_campo + 1
         if n > total:
@@ -425,7 +431,7 @@ def principal(request, pk):
 
     if request.POST.get('anterior'):
         campo = 'id'
-        obj = EprogModel.objetos.get(pk=pk)
+        obj = EprogModel.objetos.using('banquinho').get(pk=pk)
         valor_campo = getattr(obj, campo)
         n = valor_campo - 1
         if n == 0:
@@ -434,7 +440,7 @@ def principal(request, pk):
 
     if request.POST.get('Testar'):
         campo = 'id'
-        obj = EprogModel.objetos.last()
+        obj = EprogModel.objetos.using('banquinho').last()
         valor_campo = getattr(obj, campo)
         total = valor_campo
         n_rand = randint(1, total)
@@ -442,13 +448,13 @@ def principal(request, pk):
 
     if request.POST.get('ultimo'):
         campo = 'id'
-        obj = EprogModel.objetos.last()
+        obj = EprogModel.objetos.using('banquinho').last()
         valor_campo = getattr(obj, campo)
         n = valor_campo
         return redirect('url_principal', pk=n)
 
     if request.POST.get('Correta'):
-        objetinho = EprogModel.objetos.get(pk=pk)
+        objetinho = EprogModel.objetos.using('banquinho').get(pk=pk)
         #objetinho.Acertou = '1'
         #objetinho.save()
 
@@ -467,7 +473,7 @@ def principal(request, pk):
         # objetinho_tcorretas.Corretas = totalcorretas
         # objetinho_tcorretas.save()
         # objetinho2 = CalculosModel.objetos2.get(pk=1)
-        objetinho_sessao_atual = SessaoModel.objetos.get(pk=nn)
+        objetinho_sessao_atual = SessaoModel.objetos.using('banquinho').get(pk=nn)
         NTopico_next = objetinho_sessao_atual.NTopico
         #ordem_atual = objetinho_sessao_atual.Ordem
         #ordem_atual += 1
