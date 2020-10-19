@@ -32,16 +32,13 @@ class EprogModel(models.Model):
     objetos = models.Manager()
 
 class CalculosModel(models.Model):
-    Porcentagem = models.IntegerField ()
-    Corretas= models.IntegerField ()
-    Incorretas = models.IntegerField ()
-    Ordem = models.IntegerField ()
-    #Campo5 = models.IntegerField (max_length=3)
+    id = models.AutoField(primary_key=True)
+    Porcentagem = models.IntegerField()
+    Corretas= models.IntegerField()
+    Incorretas = models.IntegerField()
+    Ordem = models.IntegerField()
 
-    #def __str__(self):
-    #    return self.Porcentagem
-
-    objetos2 = models.Manager()
+    objetos = models.Manager()
 
 class ProcedimentoModel(models.Model):
     id =            models.AutoField(primary_key=True)

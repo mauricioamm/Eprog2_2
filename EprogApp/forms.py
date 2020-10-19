@@ -1,9 +1,8 @@
 from django.forms import ModelForm, Textarea
 from django import forms
 
-from .models import EprogModel, CalculosModel
+from .models import EprogModel, CalculosModel, SessaoModel, ProcedimentoModel
 
-#class EprogForm(ModelForm):
 class EprogForm(forms.ModelForm):
     class Meta:
         model = EprogModel
@@ -11,63 +10,74 @@ class EprogForm(forms.ModelForm):
                   'Acertou', 'Jafoi', 'Ativada', 'Corretas', 'Porcentagem',
                   'Marcador1', 'Marcador2', 'Marcador3', 'Marcador4', 'Marcador5']
         widgets = {
-                   'id': forms.TextInput(attrs={'size': 3}),
-                   'Participante': forms.TextInput(attrs={'size': 70}),
-                   'Ordem': forms.TextInput(attrs={'size': 3}),
-                   'Topico': forms.TextInput(attrs={'size': 70}),
-                   'Textao': forms.TextInput(attrs={'size': 70}),
-                   'SuaResposta': forms.TextInput(attrs={'size': 70}),
-                   'OndeFigura1': forms.TextInput(attrs={'size': 70}),
-                   'OndeFigura2': forms.TextInput(attrs={'size': 70}),
-                   'DuvidaComent': forms.TextInput(attrs={'size': 70}),
-                   'Acertou': forms.TextInput(attrs={'size': 3}),
-                   'Jafoi': forms.TextInput(attrs={'size': 3}),
-                   'Ativada': forms.TextInput(attrs={'size': 3}),
-                   'Corretas': forms.TextInput(attrs={'size': 3}),
-                   'Porcentagem': forms.TextInput(attrs={'size': 3}),
-                   'Marcador1': forms.TextInput(attrs={'size': 70}),
-                   'Marcador2': forms.TextInput(attrs={'size': 70}),
-                   'Marcador3': forms.TextInput(attrs={'size': 70}),
-                   'Marcador4': forms.TextInput(attrs={'size': 70}),
-                   'Marcador5': forms.TextInput(attrs={'size': 70}),
-                   'corretas': forms.TextInput(attrs={'size': 70})
-                   #'corretas':forms.CharField(max_length=20, initial='999')
-                  }
+            'Topico': forms.TextInput(attrs={'size': 150}),
+            'Textao': forms.TextInput(attrs={'size': 150}),
+            'OndeFigura1': forms.TextInput(attrs={'size': 100}),
+            'OndeFigura2': forms.TextInput(attrs={'size': 100}),
+            'SuaResposta': forms.TextInput(attrs={'size': 100}),
+            'DuvidaComent': forms.TextInput(attrs={'size': 100}),
+            'Marcador1': forms.TextInput(attrs={'size': 100}),
+            'Marcador2': forms.TextInput(attrs={'size': 100}),
+            'Marcador3': forms.TextInput(attrs={'size': 100}),
+            'Marcador4': forms.TextInput(attrs={'size': 100}),
+            'Marcador5': forms.TextInput(attrs={'size': 100}),
+        }
 
 class CalculosForm(forms.ModelForm):
-            model= CalculosModel
-            Porcentagem = forms.IntegerField(initial=0, min_value=0, widget=forms.NumberInput(attrs={'class': 'input'})),
-            Corretas = forms.IntegerField(initial=0, min_value=0, widget=forms.NumberInput(attrs={'class': 'input'})),
-            Incorretas = forms.IntegerField(initial=0, min_value=0, widget=forms.NumberInput(attrs={'class': 'input'})),
-            Campo4 = forms.IntegerField(initial=0, min_value=0, widget=forms.NumberInput(attrs={'class': 'input'})),
-            Campo5 = forms.IntegerField(initial=0, min_value=0, widget=forms.NumberInput(attrs={'class': 'input'})),
+    class Meta:
+        model = CalculosModel
+        fields = ['id', 'Porcentagem', 'Corretas', 'Incorretas', 'Ordem']
+        widgets = {
+        }
 
 
-            #fields = ['Porcentagem', 'Corretas', 'Incorretas', 'Campo4',
-            #          'Campo5']
-            #widgets = {
-            #    'Porcentagem': forms.NumberInput(required=False, attrs={'size:4', 'value:0'}),
-            #    'Corretas': forms.NumberInput(attrs={'size:4', 'value:0'}),
-            #    'Incorretas': forms.NumberInput(attrs={'size:4', 'value:0'}),
-            #    'Campo4': forms.NumberInput(attrs={'size:4', 'value:0'}),
-            #    'Campo5': forms.NumberInput(attrs={'size:4', 'value':'0'}),
-            #}
+class SessaoForm(forms.ModelForm):
+    class Meta:
+        model = SessaoModel
+        fields = ['id', 'Participante', 'Modulo', 'Sessao', 'Dia',
+                  'Horario', 'Tentativa', 'Topico', 'DuvidaComent', 'Acertou']
 
-            # .IntegerField(attrs={initial:'999'}),
-            #'Corretas': forms.TextInput(attrs={'size': 70}),
-            #           'Incorretas': forms.TextInput(attrs={'size': 70}),
-            #           'Campo4': forms.TextInput(attrs={'size': 70}),
-            #           'Campo5': forms.TextInput(attrs={'size': 70}),
-            #           # 'corretas':forms.CharField(max_length=20, initial='999')
-            #Porcentagem = forms.IntegerField(max_length=3, blank=True, null=True)
-            #Corretas = forms.IntegerField(max_length=3, blank=True, null=True)
-            #Incorretas = forms.IntegerField(max_length=3, blank=True, null=True)
-            #Campo4 = forms.IntegerField(max_length=3, blank=True, null=True)
-            #Campo5 = forms.IntegerField(max_length=3, blank=True, null=True)
-            #class Form2(forms.Form):
-            #    campo_a = forms.CharField(max_length=20, initial='999', required=False)
-            # corretas= forms.TextInput(attrs={'size': 70}),
-            # incorretas = forms.TextInput(attrs={'size': 70}),
-            # corretas= forms.CharField(required=False, initial='5'),
-            # incorretas = forms.CharField(required=False, initial='5'),
+        widgets = {
+            'id': forms.TextInput(attrs={'size': 5}),
+            'Participante': forms.TextInput(attrs={'size': 100}),
+            'Modulo': forms.TextInput(attrs={'size': 5}),
+            'Sessao': forms.TextInput(attrs={'size':  5}),
+            'Dia': forms.TextInput(attrs={'size': 20}),
+            'Horario': forms.TextInput(attrs={'size': 20}),
+            'Tentativa': forms.TextInput(attrs={'size': 20}),
+            'Topico': forms.TextInput(attrs={'size': 100}),
+            'DuvidaComent': forms.TextInput(attrs={'size': 100}),
+            'Acertou': forms.TextInput(attrs={'size': 5})
+        }
 
+class ProcedimentoForm(forms.ModelForm):
+    class Meta:
+        model = ProcedimentoModel
+        fields = ['id', 'Participante', 'Banco', 'NomeCompleto', 'Idade',
+                  'Acesso', 'Botao_avalia', 'SessaoAtual']
+        widgets = {
+            'id': forms.TextInput(attrs={'size': 5}),
+            'Participante': forms.TextInput(attrs={'size': 50}),
+            'Banco': forms.TextInput(attrs={'size': 50}),
+            'NomeCompleto': forms.TextInput(attrs={'size': 50}),
+            'Idade': forms.TextInput(attrs={'size': 5}),
+            'Acesso': forms.TextInput(attrs={'size': 5}),
+            'Botao_avalia': forms.TextInput(attrs={'size': 5}),
+            'SessaoAtual': forms.TextInput(attrs={'size': 5}),
+
+        }
+
+
+
+
+
+
+
+"""
+widgets = {
+'Topico': forms.TextInput(attrs={'size': 70}),
+'Porcentagem': forms.NumberInput(required=False, attrs={'size:4', 'value:0'}),
+'coisa': forms.CharField(required=False, initial='5'),
+}
+
+"""

@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
-from EprogApp.views import principal, principal_hidden, listagem, update, delete, criar, \
+from EprogApp.views import principal, principal_hidden, delete, criar, \
         teste_view, teste2_view, sessao_view, comecar_sessao_view, criar_tabela, clonar_model, \
         update, sessao_testar, parabens_view, entrada, \
         Entrada_Iniciar, Entrada_configuracoes, Entrada_relatorios, Entrada_sobre, Entrada_login,\
-        teste_loop, LogoutView
-
+        teste_loop, LogoutView,\
+        Editar_EprogModel, Editar_CalculosModel, Editar_ProcedimentoModel, Editar_SessaoModel,\
+        Reset_EprogModel, Reset_CalculosModel, Reset_ProcedimentoModel, Reset_SessaoModel
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,8 +31,24 @@ urlpatterns = [
     path('sessao/<int:pk>/', sessao_view, name='url_sessao'),
     path('sessao_testar/<int:pk>/', sessao_testar, name='url_sessao_testar'),
     path('comecar_sessao/', comecar_sessao_view , name='url_comecar_sessao'),
+
+    path('Editar_EprogModel/<int:pk>', Editar_EprogModel, name='url_Editar_EprogModel'),
+    path('Editar_CalculosModel/<int:pk>', Editar_CalculosModel, name='url_Editar_CalculosModel'),
+    path('Editar_ProcedimentoModel/<int:pk>', Editar_ProcedimentoModel, name='url_Editar_ProcedimentoModel'),
+    path('Editar_SessaoModel/<int:pk>', Editar_SessaoModel, name='url_Editar_SessaoModel'),
+
+    path('Reset_EprogModel/', Reset_EprogModel, name='url_Reset_EprogModel'),
+    path('Reset_CalculosModel/', Reset_CalculosModel, name='url_Reset_CalculosModel'),
+    path('Reset_ProcedimentoModel/', Reset_ProcedimentoModel, name='url_Reset_ProcedimentoModel'),
+    path('Reset_SessaoModel/<int:pk>', Reset_SessaoModel, name='url_Reset_SessaoModel'),
+
+
+
+
+    #path('Editar_EprogModel/<int:pk>/', Editar_EprogModel, name='url_Editar_EprogModel'),
     path('principal_hidden/<int:pk>/', principal_hidden, name='url_principal_hidden'),
     path('accounts/', include('django.contrib.auth.urls')),
     path("logout/", LogoutView.as_view(), name="logout"),
 
 ]
+

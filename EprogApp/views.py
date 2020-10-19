@@ -11,8 +11,9 @@ from django.db.models import Count
 
 from random import randint
 from django.contrib.auth.decorators import login_required
+
 from .models import EprogModel, CalculosModel, SessaoModel, ProcedimentoModel
-from .forms import EprogForm, CalculosForm
+from .forms import EprogForm, CalculosForm, SessaoForm, ProcedimentoForm
 
 #def LogoutView(request):
 #    logout(request)
@@ -37,6 +38,362 @@ def clonar_model(request):
     #old_quiz = Quiz.objects.get(pk=pkofquiziwanttocopy)
     #quiz.question_set=old_quiz.question_set.all()
 
+def Editar_EprogModel(request, pk):
+    user = request.user
+    banquinho = str(user)
+    objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
+    #objetinho = EprogModel.objetos.get(pk=pk)
+    form = EprogForm(request.POST or None, instance=objetinho)
+
+    if request.POST.get('Novo'):
+        user = request.user
+        banquinho = str(user)
+        objeto_ultimo = EprogModel.objetos.using(banquinho).last()
+        n_saida_ultimo = objeto_ultimo.id
+        pk_next = n_saida_ultimo + 1
+        objeto_novo = EprogModel.objetos.using(banquinho).last()
+        objeto_novo.pk = None
+        objeto_novo.pk = pk_next
+        objeto_novo.id = pk_next
+        objeto_novo.Participante = ''
+        objeto_novo.Ordem = pk_next
+        objeto_novo.Topico = ''
+        objeto_novo.Textao = ''
+        objeto_novo.SuaResposta = ''
+        objeto_novo.OndeFigura1 = ''
+        objeto_novo.OndeFigura1 = ''
+        objeto_novo.OndeFigura2 = ''
+        objeto_novo.DuvidaComent = ''
+        objeto_novo.OndeFigura1 = ''
+        objeto_novo.Acertou = ''
+        objeto_novo.Jafoi = ''
+        objeto_novo.Ativada = ''
+        objeto_novo.Corretas = ''
+        objeto_novo.Porcentagem = ''
+        objeto_novo.Marcador1 = ''
+        objeto_novo.Marcador2 = ''
+        objeto_novo.Marcador3 = ''
+        objeto_novo.Marcador4 = ''
+        objeto_novo.Marcador5 = ''
+        objeto_novo.save()
+        return redirect('url_Editar_EprogModel', pk=pk_next)
+        #return redirect('url_Editar_EprogModelNovo')
+
+    if request.POST.get('Salvar'):
+        data = {}
+        objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
+        form = EprogForm(request.POST or None, instance=objetinho)
+        if form.is_valid():
+            form.save()
+            # aqui o form é recarregado, mas continua na mesma página
+            data['form'] = form
+            data['objetinho'] = objetinho
+            return render(request, 'EprogApp/Editar_EprogModel.html', data)
+
+    if request.POST.get('Excluir'):
+        objetinho.delete()
+        return redirect('url_Editar_EprogModel', pk=1)
+
+    if request.POST.get('primeiro'):
+        # objetinho = dictclass.objetos.get(pk=1)
+        # print(objetinho)
+        return redirect('url_Editar_EprogModel', pk=1)
+
+    if request.POST.get('proximo'):
+        campo = 'id'
+        user = request.user
+        banquinho = str(user)
+        obj_ultimo = EprogModel.objetos.using(banquinho).last()
+        valor_ultimo = getattr(obj_ultimo, campo)
+        total = valor_ultimo
+        obj_atual = EprogModel.objetos.using(banquinho).get(pk=pk)
+        valor_campo = getattr(obj_atual, campo)
+        # valor_campo = getattr(obj_atual, campo)
+        n = valor_campo + 1
+        if n > total:
+            n = 1
+        return redirect('url_Editar_EprogModel', pk=n)
+
+    if request.POST.get('anterior'):
+        campo = 'id'
+        obj = EprogModel.objetos.using(banquinho).get(pk=pk)
+        valor_campo = getattr(obj, campo)
+        n = valor_campo - 1
+        if n == 0:
+            n = 1
+        return redirect('url_Editar_EprogModel', pk=n)
+
+    if request.POST.get('ultimo'):
+        campo = 'id'
+        obj = EprogModel.objetos.using(banquinho).last()
+        valor_campo = getattr(obj, campo)
+        n = valor_campo
+        return redirect('url_Editar_EprogModel', pk=n)
+
+    if request.POST.get('voltar'):
+        return redirect('url_Entrada_Iniciar')
+
+    context={
+        'form': form,
+        'objetinho': objetinho,
+    }
+    return render(request, 'EprogApp/Editar_EprogModel.html', context)
+
+def Editar_CalculosModel(request, pk):
+    user = request.user
+    banquinho = str(user)
+    objetinho = CalculosModel.objetos.using(banquinho).get(pk=pk)
+    #objetinho = EprogModel.objetos.get(pk=pk)
+    form = CalculosForm(request.POST or None, instance=objetinho)
+
+    if request.POST.get('Novo'):
+        user = request.user
+        banquinho = str(user)
+        objeto_ultimo = CalculosModel.objetos.using(banquinho).last()
+        n_saida_ultimo = objeto_ultimo.id
+        pk_next = n_saida_ultimo + 1
+        objeto_novo = CalculosModel.objetos.using(banquinho).last()
+        objeto_novo.pk = None
+        objeto_novo.pk = pk_next
+        objeto_novo.id = pk_next
+        objeto_novo.Ordem = pk_next
+        objeto_novo.Porcentagem = ''
+        objeto_novo.Corretas = ''
+        objeto_novo.Incorretas = ''
+        objeto_novo.save()
+        return redirect('url_Editar_CalculosModel', pk=pk_next)
+
+    if request.POST.get('Salvar'):
+        data = {}
+        objetinho = CalculosModel.objetos.using(banquinho).get(pk=pk)
+        form = CalculosForm(request.POST or None, instance=objetinho)
+        if form.is_valid():
+            form.save()
+            # aqui o form é recarregado, mas continua na mesma página
+            data['form'] = form
+            data['objetinho'] = objetinho
+            return render(request, 'EprogApp/Editar_CalculosModel.html', data)
+
+    if request.POST.get('Excluir'):
+        objetinho.delete()
+        return redirect('url_Editar_CalculosModel', pk=1)
+
+    if request.POST.get('primeiro'):
+        return redirect('url_Editar_CalculosModel', pk=1)
+
+    if request.POST.get('proximo'):
+        campo = 'id'
+        user = request.user
+        banquinho = str(user)
+        obj_ultimo = CalculosModel.objetos.using(banquinho).last()
+        valor_ultimo = getattr(obj_ultimo, campo)
+        total = valor_ultimo
+        obj_atual = CalculosModel.objetos.using(banquinho).get(pk=pk)
+        valor_campo = getattr(obj_atual, campo)
+        # valor_campo = getattr(obj_atual, campo)
+        n = valor_campo + 1
+        if n > total:
+            n = 1
+        return redirect('url_Editar_CalculosModel', pk=n)
+
+    if request.POST.get('anterior'):
+        campo = 'id'
+        obj = CalculosModel.objetos.using(banquinho).get(pk=pk)
+        valor_campo = getattr(obj, campo)
+        n = valor_campo - 1
+        if n == 0:
+            n = 1
+        return redirect('url_Editar_CalculosModel', pk=n)
+
+    if request.POST.get('ultimo'):
+        campo = 'id'
+        obj = EprogModel.objetos.using(banquinho).last()
+        valor_campo = getattr(obj, campo)
+        n = valor_campo
+        return redirect('url_Editar_CalculosModel', pk=n)
+
+    if request.POST.get('voltar'):
+        return redirect('url_Entrada_Iniciar')
+
+    context={
+        'form': form,
+        'objetinho': objetinho,
+    }
+    return render(request, 'EprogApp/Editar_CalculosModel.html', context)
+
+def Editar_ProcedimentoModel(request, pk):
+    user = request.user
+    banquinho = str(user)
+    objetinho = ProcedimentoModel.objetos.using(banquinho).get(pk=pk)
+    #objetinho = EprogModel.objetos.get(pk=pk)
+    form = ProcedimentoForm(request.POST or None, instance=objetinho)
+
+    if request.POST.get('Novo'):
+        user = request.user
+        banquinho = str(user)
+        objeto_ultimo = ProcedimentoModel.objetos.using(banquinho).last()
+        n_saida_ultimo = objeto_ultimo.id
+        pk_next = n_saida_ultimo + 1
+        objeto_novo = ProcedimentoModel.objetos.using(banquinho).last()
+        objeto_novo.pk = None
+        objeto_novo.pk = pk_next
+        objeto_novo.id = pk_next
+        objeto_novo.Participante = ''
+        objeto_novo.Banco = ''
+        objeto_novo.NomeCompleto = ''
+        objeto_novo.Idade = ''
+        objeto_novo.Acesso = ''
+        objeto_novo.Botao_avalia = ''
+        objeto_novo.SessaoAtual = ''
+        objeto_novo.save()
+        return redirect('url_Editar_EProcedimentoModel', pk=pk_next)
+
+    if request.POST.get('Salvar'):
+        data = {}
+        objetinho = ProcedimentoModel.objetos.using(banquinho).get(pk=pk)
+        form = ProcedimentoForm(request.POST or None, instance=objetinho)
+        if form.is_valid():
+            form.save()
+            # aqui o form é recarregado, mas continua na mesma página
+            data['form'] = form
+            data['objetinho'] = objetinho
+            return render(request, 'EprogApp/Editar_ProcedimentoModel.html', data)
+
+    if request.POST.get('Excluir'):
+        objetinho.delete()
+        return redirect('url_Editar_ProcedimentoModel', pk=1)
+
+    if request.POST.get('primeiro'):
+        return redirect('url_Editar_ProcedimentoModel', pk=1)
+
+    if request.POST.get('proximo'):
+        campo = 'id'
+        user = request.user
+        banquinho = str(user)
+        obj_ultimo = ProcedimentoModel.objetos.using(banquinho).last()
+        valor_ultimo = getattr(obj_ultimo, campo)
+        total = valor_ultimo
+        obj_atual = ProcedimentoModel.objetos.using(banquinho).get(pk=pk)
+        valor_campo = getattr(obj_atual, campo)
+        n = valor_campo + 1
+        if n > total:
+            n = 1
+        return redirect('url_Editar_ProcedimentoModel', pk=n)
+
+    if request.POST.get('anterior'):
+        campo = 'id'
+        obj = ProcedimentoModel.objetos.using(banquinho).get(pk=pk)
+        valor_campo = getattr(obj, campo)
+        n = valor_campo - 1
+        if n == 0:
+            n = 1
+        return redirect('url_Editar_ProcedimentoModel', pk=n)
+
+    if request.POST.get('ultimo'):
+        campo = 'id'
+        obj = ProcedimentoModel.objetos.using(banquinho).last()
+        valor_campo = getattr(obj, campo)
+        n = valor_campo
+        return redirect('url_Editar_ProcedimentoModel', pk=n)
+
+    if request.POST.get('voltar'):
+        return redirect('url_Entrada_Iniciar')
+
+    context={
+        'form': form,
+        'objetinho': objetinho,
+    }
+    return render(request, 'EprogApp/Editar_ProcedimentoModel.html', context)
+
+def Editar_SessaoModel(request, pk):
+    user = request.user
+    banquinho = str(user)
+    objetinho = SessaoModel.objetos.using(banquinho).get(pk=pk)
+    #objetinho = EprogModel.objetos.get(pk=pk)
+    form = SessaoForm(request.POST or None, instance=objetinho)
+
+    if request.POST.get('Novo'):
+        user = request.user
+        banquinho = str(user)
+        objeto_ultimo = SessaoModel.objetos.using(banquinho).last()
+        n_saida_ultimo = objeto_ultimo.id
+        pk_next = n_saida_ultimo + 1
+        objeto_novo = SessaoModel.objetos.using(banquinho).last()
+        objeto_novo.pk = None
+        objeto_novo.pk = pk_next
+        objeto_novo.id = pk_next
+        objeto_novo.Ordem = ''
+        #objeto_novo.Ordem = pk_next
+        objeto_novo.Participante = ''
+        objeto_novo.Modulo = ''
+        objeto_novo.Sessao = ''
+        objeto_novo.Dia = ''
+        objeto_novo.Horario = ''
+        objeto_novo.Tentativa = ''
+        objeto_novo.Topico = ''
+        objeto_novo.DuvidaComent = ''
+        objeto_novo.Acertou = ''
+        objeto_novo.save()
+        return redirect('url_Editar_SessaoModel', pk=pk_next)
+
+    if request.POST.get('Salvar'):
+        data = {}
+        objetinho = SessaoModel.objetos.using(banquinho).get(pk=pk)
+        form = SessaoForm(request.POST or None, instance=objetinho)
+        if form.is_valid():
+            form.save()
+            # aqui o form é recarregado, mas continua na mesma página
+            data['form'] = form
+            data['objetinho'] = objetinho
+            return render(request, 'EprogApp/Editar_SessaoModel.html', data)
+
+    if request.POST.get('Excluir'):
+        objetinho.delete()
+        return redirect('url_Editar_SessaoModel', pk=1)
+
+    if request.POST.get('primeiro'):
+        return redirect('url_Editar_SessaoModel', pk=1)
+
+    if request.POST.get('proximo'):
+        campo = 'id'
+        user = request.user
+        banquinho = str(user)
+        obj_ultimo = SessaoModel.objetos.using(banquinho).last()
+        valor_ultimo = getattr(obj_ultimo, campo)
+        total = valor_ultimo
+        obj_atual = SessaoModel.objetos.using(banquinho).get(pk=pk)
+        valor_campo = getattr(obj_atual, campo)
+        # valor_campo = getattr(obj_atual, campo)
+        n = valor_campo + 1
+        if n > total:
+            n = 1
+        return redirect('url_Editar_SessaoModel', pk=n)
+
+    if request.POST.get('anterior'):
+        campo = 'id'
+        obj = SessaoModel.objetos.using(banquinho).get(pk=pk)
+        valor_campo = getattr(obj, campo)
+        n = valor_campo - 1
+        if n == 0:
+            n = 1
+        return redirect('url_Editar_SessaoModel', pk=n)
+
+    if request.POST.get('ultimo'):
+        campo = 'id'
+        obj = SessaoModel.objetos.using(banquinho).last()
+        valor_campo = getattr(obj, campo)
+        n = valor_campo
+        return redirect('url_Editar_SessaoModel', pk=n)
+
+    if request.POST.get('voltar'):
+        return redirect('url_Entrada_Iniciar')
+
+    context={
+        'form': form,
+        'objetinho': objetinho,
+    }
+    return render(request, 'EprogApp/Editar_SessaoModel.html', context)
+
 def criar_tabela(request):
     v_participante = ''
     v_procedimento = ''
@@ -46,9 +403,6 @@ def criar_tabela(request):
             v_participante = str(request.POST.get('nome_participante'))
             v_procedimento = str(request.POST.get('nome_procedimento'))
             cursor.execute("CREATE TABLE "+v_participante+" (ordem INTEGER PRIMARY KEY, nome TEXT, sobrenome TEXT, telefone VARCHAR)")
-            #cursor.execute("select tablename from pg_tables where schemaname = 'public'")
-            #conectar = sqlite3.connect('Banquinho.db')
-
 
         context= {
             'v_participante': v_participante,
@@ -65,8 +419,8 @@ def criar_tabela(request):
 @login_required
 def teste_view(request):
         query_Eprog = EprogModel.objetos.all()
-        query_Calculos = CalculosModel.objetos2.all()
-        objetinho2 = CalculosModel.objetos2.get(pk=1)
+        query_Calculos = CalculosModel.objetos.all()
+        objetinho2 = CalculosModel.objetos.get(pk=1)
 
         context = {
             "object_list_Eprog": query_Eprog,
@@ -76,19 +430,19 @@ def teste_view(request):
         return render(request, "EprogApp/teste.html", context)
 
 def teste2_view(request):
-    objetinho2 = CalculosModel.objetos2.get(pk=1)
+    objetinho2 = CalculosModel.objetos.get(pk=1)
     aumentado = objetinho2.Corretas
     mudou = "xxxx"
 
     if request.POST.get('correta'):
-        objetinho_tcorretas = CalculosModel.objetos2.get(pk=1)
+        objetinho_tcorretas = CalculosModel.objetos.get(pk=1)
         totalcorretas = objetinho_tcorretas.Corretas
         totalcorretas += 1
         mudou = totalcorretas
         objetinho_tcorretas.Corretas = totalcorretas
         objetinho_tcorretas.save()
 
-        objetinho2 = CalculosModel.objetos2.get(pk=1)
+        objetinho2 = CalculosModel.objetos.get(pk=1)
         context = {
             "objetinho2": objetinho2,
             "aumentado": aumentado,
@@ -96,7 +450,7 @@ def teste2_view(request):
         }
         return redirect('url_teste2_view')
 
-    objetinho2 = CalculosModel.objetos2.get(pk=1)
+    objetinho2 = CalculosModel.objetos.get(pk=1)
     context = {
             "objetinho2": objetinho2,
             "aumentado": aumentado,
@@ -167,7 +521,127 @@ def Entrada_Iniciar(request):
 
 @staff_member_required
 def Entrada_configuracoes(request):
+    if request.POST.get('editar_eprogModel'):
+        return redirect('url_Editar_EprogModel', pk=1)
+
+    if request.POST.get('editar_calculosModel'):
+        return redirect('url_Editar_CalculosModel', pk=1)
+
+    if request.POST.get('editar_procedimentoModel'):
+        return redirect('url_Editar_ProcedimentoModel', pk=1)
+
+    if request.POST.get('editar_sessaoModel'):
+        return redirect('url_Editar_SessaoModel', pk=1)
+
+    if request.POST.get('reset_eprogModel'):
+        return redirect('url_Reset_EprogModel')
+
+    if request.POST.get('reset_calculosModel'):
+        return redirect('url_Reset_CalculosModel')
+
+    if request.POST.get('reset_procedimentoModel'):
+        return redirect('url_Reset_procedimentoModel')
+
+    if request.POST.get('reset_sessaoModel'):
+        return redirect('url_Reset_SessaoModel', pk=1)
+
     return render(request, "EprogApp/Entrada_configuracoes.html")
+
+def Reset_EprogModel(request):
+    # ----Resetando
+    user = request.user
+    banquinho = str(user)
+    objeto_apagar = EprogModel.objetos.using(banquinho).all()
+    for item in objeto_apagar:
+        item.DuvidaComent= ''
+        item.Marcador1=''
+        item.Marcador2= ''
+        item.Marcador3 = ''
+        item.Marcador4 = ''
+        item.Marcador5 = ''
+        item.Acertou=''
+        item.Jafoi = ''
+        item.Corretas = ''
+        item.Porcentagem = ''
+        item.save()
+
+    SeApagou = 'OK. Registros apagados'
+    context = {
+        'resultado': SeApagou
+    }
+    return render(request, "EprogApp/Entrada_configuracoes.html", context)
+
+def Reset_CalculosModel(request):
+    # ----Resetando
+    user = request.user
+    banquinho = str(user)
+    objeto_apagar = CalculosModel.objetos.using(banquinho).get(pk=1)
+    objeto_apagar.Porcentagem= '0'
+    objeto_apagar.Corretas = '0'
+    objeto_apagar.Incorretas = '0'
+    objeto_apagar.Ordem = '0'
+    objeto_apagar.apagar.save()
+
+    SeApagou = 'OK. Registros apagados'
+    context = {
+        'resultado': SeApagou
+    }
+    return render(request, "EprogApp/Entrada_configuracoes.html", context)
+
+def Reset_ProcedimentoModel(request):
+    # ----Resetando
+    user = request.user
+    banquinho = str(user)
+    objeto_apagar = ProcedimentoModel.objetos.using(banquinho).get(pk=1)
+    objeto_apagar.SessaoAtual= '1'
+    objeto_apagar.save()
+
+
+    SeApagou = 'OK. Registros apagados'
+    context = {
+        'resultado': SeApagou
+    }
+    return render(request, "EprogApp/Entrada_configuracoes.html", context)
+
+def Reset_SessaoModel(request, pk):
+    user = request.user
+    banquinho = str(user)
+    SessaoModel.objetos.using(banquinho).all().delete()
+    SessaoModel.objetos.using(banquinho).get_or_create(pk='1')
+    #objeto_saida = SessaoModel.objetos.using(banquinho).get_or_create(pk='1')
+    #objeto_saida = SessaoModel.objetos.using(banquinho).last()
+    #objeto_saida.pk = None
+    """
+    objeto_saida.id = 1
+    objeto_saida.save()
+    #-------gravar saida default
+    objeto_saida.sessao = '1'
+    objeto_saida.Participante= user
+    objeto_saida.save()
+    """
+
+
+    """
+    #objeto_saida= SessaoModel.objetos.using(banquinho).all().delete()
+    #objeto_saida.save()
+    objeto_novo = SessaoModel.objetos.using(banquinho).get_or_create(id='1')
+    objeto_novo.save()
+    #objeto_novo = BlocoSaidaModel.objetos.using(banquinho).get_or_create(id='1')
+    #objeto_saida = SessaoModel.objetos.using(banquinho).last()
+    #n_saida_ultimo = objeto_saida.id
+    #pk_next = n_saida_ultimo + 1
+    #objeto_saida.pk = None
+    #objeto_novo.pk = 1
+    #objeto_saida.id= 1
+    objeto_novo.sessao = '1'
+    objeto_novo.save()
+    # -------gravar saida default
+    """
+    SeApagou = 'OK. Registros apagados'
+    context = {
+        'resultado': SeApagou
+    }
+    return render(request, "EprogApp/Entrada_configuracoes.html", context)
 
 @staff_member_required
 def Entrada_relatorios(request):
@@ -188,45 +662,7 @@ def Entrada_relatorios(request):
             writer = csv.writer(response)
             writer.writerow([item])
         return response
-
-
     return render(request, "EprogApp/Entrada_relatorios.html")
-
-
-"""
-    objetinho = EprogModel.objetos.using(banquinho).get(pk=1)
-    objeto_sessao = SessaoModel.objetos.using(banquinho).get(pk=pk)
-    #x_participante = objetinho.Participante
-    #x_Ordem = objetinho.Ordem
-    #x_Topico = objetinho.Topico
-    campo = 'id'
-    obj = SessaoModel.objetos.using(banquinho).last()
-    valor_campo = getattr(obj, campo)
-    total = valor_campo
-
-    if request.POST.get('export'):
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
-        linha = {}
-        #linha = SessaoModel.objetos.using(banquinho).get(id=id)
-        objeto_sessao = SessaoModel.objetos.using(banquinho).get(pk=pk)
-        lista = SessaoModel.objetos.using(banquinho).get(pk=1)
-        lista = SessaoModel.objetos.using(banquinho).all()
-        for linha in lista:
-            x_Participante = objeto_sessao.Participante
-            x_Modulo = objeto_sessao.Modulo
-            x_Sessao = objeto_sessao.Sessao
-            x_Dia = objeto_sessao.Dia
-            x_Horario = objeto_sessao.Horario
-            x_Ordem = objeto_sessao.Ordem
-            x_DuvidaComent = objeto_sessao.DuvidaComent
-            x_Acertou = objeto_sessao.Acertou
-            writer = csv.writer(response)
-            writer.writerow(['Participante', 'Modulo', 'Sessao', 'Dia', 'Horario', 'Ordem', 'DuvidaComent', 'Acertou'])
-            writer.writerow([x_Participante, x_Modulo, x_Sessao, x_Dia, x_Horario, x_Ordem, x_DuvidaComent, x_Acertou])
-        return response
-        
-"""
 
 def Entrada_sobre(request):
     return render(request, "EprogApp/Entrada_sobre.html")
@@ -303,19 +739,6 @@ def criar(request):
     data['form'] = form
     return render(request, 'EprogApp/principal_vazio.html', data)
 
-"""
-def update(request, pk):
-    data = {}
-    lista = EprogModel.objetos.get(pk=pk)
-    form = EprogForm(request.POST or None, instance=lista)
-    if form.is_valid():
-        form.save()
-        return redirect('url_listagem')
-    data['form'] = form
-    data['lista'] = lista
-    return render(request, 'EprogApp/principal.html', data)
-"""
-
 def delete(request, pk):
     user = request.user
     banquinho = str(user)
@@ -384,8 +807,8 @@ def comecar_sessao_view(request):
 def principal(request, pk):
     data = {}
     objetinho = EprogModel.objetos.get(pk=pk)
-    objetinho2 = CalculosModel.objetos2.get(pk=1)
-    objetinho_ordem = CalculosModel.objetos2.get(pk=1)
+    objetinho2 = CalculosModel.objetos.get(pk=1)
+    objetinho_ordem = CalculosModel.objetos.get(pk=1)
     objetinho_sessao = SessaoModel.objetos.get(pk=1)
     n_tentativa = objetinho_sessao.NTopico
 
@@ -460,7 +883,7 @@ def principal(request, pk):
 
         form = EprogForm(request.POST or None, instance=objetinho)
 
-        objetinho2 = CalculosModel.objetos2.get(pk=1)
+        objetinho2 = CalculosModel.objetos.get(pk=1)
         ordem_atual = objetinho2.Ordem
         ordem_next = ordem_atual + 1
         objetinho2.Ordem = ordem_next
@@ -504,8 +927,8 @@ def principal(request, pk):
 def update(request, pk):
     data = {}
     objetinho = EprogModel.objetos.get(pk=pk)
-    objetinho2 = CalculosModel.objetos2.get(pk=1)
-    objetinho_ordem = CalculosModel.objetos2.get(pk=1)
+    objetinho2 = CalculosModel.objetos.get(pk=1)
+    objetinho_ordem = CalculosModel.objetos.get(pk=1)
     objetinho_sessao = SessaoModel.objetos.get(pk=1)
     #n_tentativa = objetinho_sessao.NTopico
 
@@ -578,7 +1001,7 @@ def update(request, pk):
         objetinho = EprogModel.objetos.get(pk=pk)
         form = EprogForm(request.POST or None, instance=objetinho)
 
-        objetinho2 = CalculosModel.objetos2.get(pk=1)
+        objetinho2 = CalculosModel.objetos.get(pk=1)
         ordem_atual = objetinho2.Ordem
         ordem_next = ordem_atual + 1
         objetinho2.Ordem = ordem_next
@@ -702,14 +1125,26 @@ def sessao_view(request, pk):
                 obj_linhaum.save()
             obj_linhaum.save()
             # Bloco 1- fim
+
             #Populando o arquivo de saída início
             if Objeto_Procedimento.Botao_avalia == '0':
-                objeto_sessao_ultimo = SessaoModel.objetos.using(banquinho).last()
-                pk_ultimo = objeto_sessao_ultimo.pk
-                objeto_sessao.pk = None
+                quantos_saida = SessaoModel.objetos.using(banquinho).count()
+                pk_next = quantos_saida + 1
+                objeto_saida = SessaoModel.objetos.using(banquinho).last()
+                #n_saida_ultimo = objeto_saida.id
+                objeto_saida.pk = None
+                objeto_saida.pk = pk_next
+                objeto_saida.id = pk_next
+                objeto_saida.save()
+                objeto_sessao = SessaoModel.objetos.using(banquinho).last()
+                pk_ultimo= objeto_sessao.pk
+                #objeto_sessao_ultimo = SessaoModel.objetos.using(banquinho).last()
+                #pk_ultimo = pk_next
+                #objeto_sessao.pk = None
                 objeto_sessao.Dia = str(datetime.date.today())
                 objeto_sessao.Horario = datetime.datetime.now().strftime('%H:%M:%S')
-                objeto_sessao.Tentativa = pk_ultimo + 1
+                objeto_sessao.Tentativa = pk_ultimo
+                #objeto_sessao.Tentativa = pk_ultimo + 1
                 objeto_sessao.Ordem = objetinho.Ordem
                 objeto_sessao.Topico = objetinho.Topico
                 objeto_sessao.DuvidaComent = objetinho.DuvidaComent
@@ -767,14 +1202,26 @@ def sessao_view(request, pk):
                 obj_linhaum.save()
             obj_linhaum.save()
             # Bloco 1- fim
+
             # Populando o arquivo de saída início
             if Objeto_Procedimento.Botao_avalia == '0':
-                objeto_sessao_ultimo = SessaoModel.objetos.using(banquinho).last()
-                pk_ultimo = objeto_sessao_ultimo.pk
-                objeto_sessao.pk = None
+                quantos_saida = SessaoModel.objetos.using(banquinho).count()
+                pk_next = quantos_saida + 1
+                objeto_saida = SessaoModel.objetos.using(banquinho).last()
+                # n_saida_ultimo = objeto_saida.id
+                objeto_saida.pk = None
+                objeto_saida.pk = pk_next
+                objeto_saida.id = pk_next
+                objeto_saida.save()
+                objeto_sessao = SessaoModel.objetos.using(banquinho).last()
+                pk_ultimo = objeto_sessao.pk
+                # objeto_sessao_ultimo = SessaoModel.objetos.using(banquinho).last()
+                # pk_ultimo = pk_next
+                # objeto_sessao.pk = None
                 objeto_sessao.Dia = str(datetime.date.today())
                 objeto_sessao.Horario = datetime.datetime.now().strftime('%H:%M:%S')
-                objeto_sessao.Tentativa = pk_ultimo + 1
+                objeto_sessao.Tentativa = pk_ultimo
+                # objeto_sessao.Tentativa = pk_ultimo + 1
                 objeto_sessao.Ordem = objetinho.Ordem
                 objeto_sessao.Topico = objetinho.Topico
                 objeto_sessao.DuvidaComent = objetinho.DuvidaComent
