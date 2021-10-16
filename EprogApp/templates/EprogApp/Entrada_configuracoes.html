@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	
+   <form method="post" >  {% csrf_token %}
+	   <input type="submit" value="Editar EprogModel" name="editar_eprogModel">
+       <input type="submit" value="Reset EprogModel" name="reset_eprogModel">
+       <br><br>
+       <input type="submit" value="Editar CalculosModel" name="editar_calculosModel">
+       <br><br>
+       <input type="submit" value="Editar ProcedimentoModel" name="editar_procedimentoModel">
+       <br><br>
+       <input type="submit" value="Editar SessaoModel" name="editar_sessaoModel">
+       <input type="submit" value="Reset SessaoModel" name="reset_sessaoModel">
+       <br><br>
+       <a>Resultado:</a> {{resultado}}
+   </form>
+
+{% endblock %}
+
+
+
+

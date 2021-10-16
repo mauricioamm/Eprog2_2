@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br"
+
+<html>
+<head>
+	<meta charset= "utf-8">
+
+</head>
+<body>
+
+
+</body>
+	<div class="container">
+			<section>
+			<form method="post">
+				{% csrf_token %}
+				<input type="submit" class="btn salvar" value="Salvar" name="Salvar">
+				<input type="submit" class="btn_seta" value="<" name="anterior">
+				<input type="submit" class="btn_seta" value=">"  name="proximo">
+				<br>
+					<p style="font-family:Arial; color:Black; font-size: 16px;  font-weight: bold">
+						Textão:<input type="text" name="Textao" class="Textao" value="{{form.Textao.value}}"><br><br>
+						<!--Textão: <textarea class="Textao" rows="7" cols="40">{{form.Textao.value}}</textarea>-->
+						<!--<input type="submit" class="btn_SuaResposta" value="Sua Resposta" name="Sua_Resposta">-->
+						<br>
+					</p>
+				<br>
+			</form>
+			</section>
+	</div>
+</html>

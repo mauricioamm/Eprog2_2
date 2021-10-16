@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+
+<html>
+<head>
+	<meta charset= "utf-8">
+	<title>Testando</title>
+	<link rel="stylesheet" href="principal.css">
+</head>
+<body>
+
+
+</body>
+	<div class="container">
+			<section>
+			<h3>Eprog -Versão Piloto 1</h3>
+			
+			<form method="post">
+				{% csrf_token %}
+				<br>
+				<br>
+				<input type="submit" class="btn inserir" value="Novo" name="Novo">
+				<input type="submit" class="btn salvar" value="Salvar" name="Salvar">
+				<input type="submit" class="btn excluir" value="Excluir" name="Excluir">
+				<input type="submit" class="btn sortear" value="Sortear" name="Sortear">
+				<br>
+				<input type="submit" class="btn primeiro" value="<<" name="primeiro">
+				<input type="submit" class="btn anterior" value="<" name="anterior">
+				<input type="submit" class="btn proximo" value=">"  name="proximo">
+				<input type="submit" class="btn ultimo" value=">>" name="ultimo">
+				<input type="submit" class="btn listagem" value="Listagem" name="Listagem">
+				<br>
+				<br>
+				<!-- um opção: <audio controls autoplay> -->
+				<audio controls>
+					<source src="{{objetinho.som1}}" type="audio/mpeg">
+				</audio>
+				<br>
+				<br>
+				<div class="formulario">
+					<p style="font-family:Arial; color:Black; font-size: 15px;">
+						Tópico:<br><input type="text" name="Topico" class="Topico" value="{{form.Topico.value}}" autofocus><br>
+						Texto:<br><input type="text" name="Textao" class="Textao" value ="{{form.Textao.value}}"> <br>
+						<br>
+						<br>
+						Campox1:<br><input type="text" name="DuvidaComent" class="campo" value="{{form.DuvidaComent.value}}"><br>
+					</p>
+				</div>
+				<br>
+			</form>
+			</section>
+		<nav>
+			<br>
+				<div class="figurinha">
+				{% if objetinho.figura1 %}
+                    <img src="{{objetinho.figura1}}" width="350" height="350" ><br>
+                {% endif %}
+				</div>
+			<br>
+			<br>
+			<ul class="menu">
+				<li>Cadastrar Participante</li>
+				<li>Executar Sessão</li>
+				<li>Configurar Sessão</li>
+				<li>Relatórios</li>	
+				<li>Sobre</li>			
+				<li>Sair</li>
+			</ul>
+			<br>
+			
+		</nav>
+
+	</div>
+</html>

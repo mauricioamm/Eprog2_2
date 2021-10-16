@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<form method="post">
+	    {% csrf_token %}
+        <h2>Criar tabela</h2>
+        Participante: <input type="text"  name="nome_participante" value= "{{ v_participante }}"> <br>
+        Procedimento: <input type="text"  name="nome_procedimento" value= "{{ v_procedimento }}">
+        <br>
+        <input type="submit" value="Criar Tabela" name="criartabela">
+        <br><br>
+        Vai participar: {{ v_participante }} <br>
+        Vai fazer: {{ v_procedimento }}
+    </form>
+
+        <!--
+
+        Primeiro valor = <input type="text" autocomplete="off" name="num1" value= {{val1}}><br>
+    	Segundo valor = <input type="text" autocomplete="off" name="num2" value= {{val2}}><br>
+		<input type="submit" value="responder" name="responder"><br>
+		Soma = {{ Resultado }}<br><br>
+
+        Ordem: 1 ; Tentativa: {{ n_tentativa }}
+        Eprog Tópico: xxx
+        <ul>
+        {% for EprogModel in lista %}
+            <li><a href="{% url 'url_principal' EprogModel.id %}"> {{EprogModel.Topico}}</a></li>
+        {% endfor %}
+        </ul>-->
+</body>
+</html>

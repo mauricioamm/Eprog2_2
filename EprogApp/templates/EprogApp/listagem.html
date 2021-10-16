@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	<form method="post">
+	    {% csrf_token %}
+        <h2>Listagem</h2>
+        <ul>
+        {% for EprogModel in lista %}
+            <li><a href="{% url 'url_update' EprogModel.id %}"> {{EprogModel.Topico}}</a></li>
+        {% endfor %}
+        </ul>
+        <br>
+        <br>
+        <input type="submit" value="Começar Sessão" name="comecar_sessao">
+    </form>
+</body>
+</html>

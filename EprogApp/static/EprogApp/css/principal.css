@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+} 
+
+body {
+  background-color: #222;
+  font-family: Verdana;
+  font-size: 100%;
+  color: #fff;
+  }
+
+.container {
+  width: 1100px;
+  padding: 5px;  
+  margin: auto;   
+  margin-top: 10px;
+}
+
+section {
+  background-color: #ffa;
+  color: #333;
+  width: 630px;
+  height: 600px;
+  margin-left: 0 px;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;    
+}
+
+ul.menu {
+  list-style-type: none;  
+}
+
+ul.menu li {
+  width: 430px;
+  height: 40px;  
+  line-height: 40px;
+  box-sizing: border-box;
+  padding-left: 10px;
+  background-color: #777;  
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+ul.menu li:hover {
+  background-color: #888;
+}
+
+.btn {
+  width: 120px;
+  height: 30px;
+  border: 1px solid #ddd;    
+}
+
+.inserir{
+  /* background-image: url(../_img/icone-salvar.png);*/
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.salvar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #46aD7a;
+  color: #fff;
+  cursor: pointer;
+}
+  
+.limpar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.excluir {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #ad4656;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn_seta{
+  width: 50px;
+  height: 30px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #661a;
+  color: White;
+  font-size: 17px;
+  cursor: pointer;    
+}
+
+
+.btn_Testar{
+  width: 90px;
+  height: 30px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #213a;
+  color: White;
+  font-size: 17px;
+  cursor: pointer; 
+}
+
+.btn_Resposta{
+  width: 90px;
+  height: 30px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #210a;
+  color: White;
+  font-size: 17px;
+  cursor: pointer; 
+}
+
+.Topico {
+  width:600px;
+  height: 60px;
+  font-family: Arial;
+  color: Blue;
+  font-size: 17px;
+  border-radius: 3px;
+  margin-top: 1px;
+  border: 2px solid #ccc;  
+}
+
+.Textao {
+  width:580px;
+  height: 200px;
+  font-family: Arial;
+  color: Black;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-top: 1px;
+  border: 2px solid #ccc;
+  padding: 5px;
+  float: left;
+}
+
+.btn_SuaResposta{
+  background-color: #46aD7a;
+  color: #fff;
+}
+
+.DuvidaComent{
+  width:540px;
+  height: 50px;
+  font-family: Arial;
+  color: Black;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-top: 3px;
+  border: 2px solid #ccc;
+}
+
+.SalvarDuvida{
+   /* background-image: url(../_img/icone-salvar.png); */
+  width: 50px;
+  height: 25px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  cursor: pointer;
+  background-color: #46aD7a;
+  color: #fff;
+  cursor: pointer;
+
+}
+
+.bloco2 {
+  width: 460px;
+  height: 600px;
+  margin-left: 10px;
+  background-color: #8B4513;
+  box-sizing: border-box;
+  padding: 5px;
+  float: left;
+}
+
+.porcentagem{
+  width: 50px;
+  height: 30px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #46aD7a;
+  font-family: Arial;
+  color: Black;
+  font-size: 14px;  
+}
+
+.figurinha {
+ margin-top: 3px;
+ width: 420px;
+ margin-left: 3px; 
+ box-sizing: border-box;  
+ padding: 3px;   
+ border: 2px solid #cce;  
+}  
+
+
+nav {
+/*
+  width: 460px;
+  height: 615px;
+  margin-left: 10px;
+  background-color: #555;
+  box-sizing: border-box;
+  padding: 5px;
+  float: left; */
+}
+
+.marcadores{
+  width:340px;
+  height: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-top: 3px;
+  border: 2px solid #ccc;      
+}
+
+
+
+/*
+  background-color: #ffa;
+  color: #333;
+
+  height: 760px;
+  
+  float: left;
+  box-sizing: border-box;
+  
+  */
+  
+}
