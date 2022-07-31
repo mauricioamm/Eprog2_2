@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+<style>
+
+.porcentagem{
+  width: 5px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 15px;
+}
+
+.garrafal{
+  width: 30px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 25px;
+}
+
+
+</style>
+
+{% block content %}
+
+	<form method="post">{% csrf_token %}		
+    <!--Área do Experimentador-->
+    <br><br> 
+    {{ form.Senha_Salva }}
+    <!--Experimentador:<br><textarea>{{form.Senha_Salva.value }}</textarea>--> 
+    <br><br>
+		<input type="submit" type="text" value="Entrar" name="entrar">
+ 		<br><br> 
+		<!--<input type="submit" value="Voltar" name="voltar">-->
+	</form>
+{% endblock %}
+
+
+
+

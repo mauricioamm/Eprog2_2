@@ -1,0 +1,29 @@
+def sessao_view(request, pk):
+def Entrada_Iniciar(request):
+def Entrada_configuracoes(request):
+def preteste_view2(request, pk):
+def posteste_view(request, pk):
+def sessao_testar(request, pk):
+def sessao_fim_modulo_view(request, pk):
+def sessao_fim_modulo_final_view(request, pk):
+def sessao_fim_estudo_view(request):
+def Reset_Models(request):
+def Entrada_relatorios(request):
+def Editar_EtapasAcesso(request, pk):
+def Editar_EprogModel(request, pk):
+def Editar_Preteste(request, pk):
+def Entrada_Experimentador_view(request):
+def Editar_Modulos_view(request, pk):
+if objeto_procedimento.Retreino == '0':
+/media/images/vazio.jpg
+
+
+
+            while SeAcertou == '1' or qualmodulo != modulo_sorteado or x_ativada == '0':
+                n_rand = randint(1, total)
+                obj_sorteio = EprogModel.objetos.using(banquinho).get(pk=n_rand)
+                SeAcertou = obj_sorteio.Acertou
+                modulo_sorteado = obj_sorteio.Modulo
+            return redirect('url_sessao_testar', pk=n_rand)
+
+x_ativada = obj_sorteio.Ativada

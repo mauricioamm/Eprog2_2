@@ -40,7 +40,7 @@ div#topo2{
 }
 
 div#esquerdo{
-	height:533px;
+	height:500px;
 	width:700px;
 	background-color:#D2B48C;
 	/*border:1px solid #000000;*/
@@ -50,7 +50,7 @@ div#esquerdo{
 }	
 
 div#direito{
-	height:533px;
+	height:500px;
 	width:570px;
 	background-color:#D2B48C;
 	/*padding: 10px;*/
@@ -152,7 +152,7 @@ div#direito{
 
 .Textao {
   width:680px;
-  height: 270px;
+  height: 230px;
   font-family: Arial;
   color: Black;
   font-size: 14px;
@@ -223,7 +223,19 @@ div#direito{
 }
 
 .porcentagem{
-  width: 45px;
+  width: 30px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 15px;
+}
+
+.porcentagem2{
+  width: 40px;
   height: 20px;
   border: 1px solid #ddd;  
   background-repeat: no-repeat;
@@ -267,24 +279,35 @@ div#direito{
 
 		</div>
 		<div class= "content" id="topo2">
-				Ordem:<input type="text" name="Ordem" class="porcentagem" value= "{{ objetinho.Ordem }} " readonly>
-				Acertou:<input type="text" name="Acertou" class="porcentagem" value= "{{ objetinho.Acertou }} " readonly>
-				Corretas:<input type="text" name="Tcorretas" class="porcentagem" value= "{{ obj_linhaum.Corretas }} " readonly>
-				Porcentagem: <input type="text" class="porcentagem" name="porcentagem" value= "{{ obj_linhaum.Porcentagem }} " readonly>
+        Módulo:<input type="text" name="Modulo" class="porcentagem" value= "{{ objeto_procedimento.ModuloAtual }} "readonly>
+        Questão:<input type="text" name="Questao" class="porcentagem" value= "{{ objetinho.Numero }} "readonly>
+        Corretas:<input type="text" name="Numero" class="porcentagem" value= "{{ objetinho.Acertou }} " readonly> 
+        Total:<input type="text" name="Numero" class="porcentagem" value= "{{ objeto_calculo.TotalModulo }} " readonly> 
+        %Corretas:<input type="text" name="porcentagem" class="porcentagem2" value= "{{ objeto_calculo.Porcentagem  }} " readonly>
+        <!--%Corretas:<input type="text" class="porcentagem" name="porcentagem" value= "{{ obj_linhaum.Porcentagem  }} " readonly>-->
 				<input type="submit" class="btn_salvar" value="Sair" name="Sair">
 
 		</div>
 		<div class= "content" id="esquerdo">
+      No.:<input type="text" name="Ordem" class="porcentagem" value= "{{ objetinho.Ordem }} " readonly>&nbsp;&nbsp;&nbsp;&nbsp;    
 			<label for="esquerdo">Tópico:</label><br><textarea class="Topico" name="Topico" readonly>{{form.Topico.value}}</textarea><br>
 			Texto:<br><textarea class="Textao" name="Textao" readonly>{{form.Textao.value}}</textarea><br><br>
 			Sua Resposta:<br><textarea class="SuaResposta" name="SuaResposta">{{ form.SuaResposta.value }}</textarea><br><br>
 		</div>
 		<div class= "content" id="direito">
+      {% if messages %}
+      <ul class="messages">
+       {% for message in messages %}
+       <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+       {% endfor %}
+      </ul>
+    {% endif %}
 
 			{% if objetinho.OndeFigura1 %}
-			<input type="submit" class="btn_salvar" value="Upload" name="Upload">
+			<!-- Upload desativado  
+      <input type="submit" class="btn_salvar" value="Upload" name="Upload">-->
 			<br>
-            <img src="{{objetinho.OndeFigura1}}" class= "figurinha" width="460" height="390" ><br>
+            <img src="{{objetinho.OndeFigura1}}" class= "figurinha" width="400" height="330" ><br>
             {% endif %}
 			<br>
 			Dúvidas/Comentários
@@ -292,7 +315,15 @@ div#direito{
 			<br><textarea class="DuvidaComent" name="DuvidaComent">{{form.DuvidaComent.value}}</textarea><br><br>
 
 		</div>
+    {% if messages %}
+      <ul class="messages">
+       {% for message in messages %}
+       <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+       {% endfor %}
+    </ul>
+    {% endif %}
 	</form>
+
 	<script>
         var soma= 0
         totalcorretas= 0

@@ -1,12 +1,54 @@
 {% extends 'base.html' %}
 
+<style>
+
+.porcentagem{
+  width: 5px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 15px;
+}
+
+.garrafal{
+  width: 30px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 25px;
+}
+
+
+</style>
+
 {% block content %}
 
 	<form method="post">{% csrf_token %}		
-		Oi, {{ user.get_username }}<br><br>
-		<input type="submit" value="Começar Sessão" name="comecar_sessao"><br><br>
+		Oi, {{ user.get_username }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    <br><br>
+		<!--Próximo módulo:<input type="text" name="Modulo" class="porcentagem" value= "{{ objeto_procedimento.ModuloAntigo }} " readonly>-->  
+    Módulo Atual:&nbsp; {{form_procedimento.ModuloAntigo.value}}<br><br>
+    <!--Pré-Teste:&nbsp;<br>
+    Pós-Teste:&nbsp;<br>-->
+    <br> 
+    	Etapa:&nbsp; {{ form_procedimento.EtapaAtual }}
+      Como assim?
+
+		<input type="submit" value="Começar" name="comecar_algo">
+ 
+		<br><br><br>
+		<!--<input type="submit" value="Treinar novamente módulos anteriores" name="comecar_retreino">-->
 		<!--Usuário:{{ user.get_username }}<br>
 		Banco:-->
+		
 	</form>
 {% endblock %}
 

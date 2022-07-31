@@ -1,20 +1,62 @@
 {% extends 'base.html' %}
 
+<style>
+
+div.content{
+  
+  float:left;
+  margin:10px;
+  margin:4px;
+  padding: 7px;
+    font-family: Arial;
+    color: Black;
+    font-size: 17px bold;
+}
+
+
+.porcentagem{
+  width: 30px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 15px;
+}
+
+  </style>
 
 {% block content %}
 	
    <form method="post" >  {% csrf_token %}
-	   <input type="submit" value="Editar EprogModel" name="editar_eprogModel">
-       <input type="submit" value="Reset EprogModel" name="reset_eprogModel">
+	     <input type="submit" value="Editar EprogModel" name="editar_eprogModel">&nbsp;&nbsp;&nbsp;&nbsp;
+       <input type="submit" value="Editar Pré-Teste" name="editar_preteste">&nbsp;&nbsp;&nbsp;&nbsp;
+       <input type="submit" value="Editar Pós-Teste" name="editar_posteste"> 
+       <br><br>
+       <input type="submit" value="Editar configurações dos módulos" name="editar_modulos">&nbsp;&nbsp;&nbsp;&nbsp;  
        <br><br>
        <input type="submit" value="Editar CalculosModel" name="editar_calculosModel">
        <br><br>
        <input type="submit" value="Editar ProcedimentoModel" name="editar_procedimentoModel">
        <br><br>
-       <input type="submit" value="Editar SessaoModel" name="editar_sessaoModel">
+       <input type="submit" value="RELATÓRIOS" name="relatorios">
+       <br><br>
+       <input type="submit" value="Reset" name="reset_models">
+
+               
+       <!--
+       <input type="submit" value="Reset EprogModel" name="reset_eprogModel">
+       <br><br>
+       <input type="submit" value="Reset CalculosModel" name="reset_calculosModel">
+       <br><br>
+       <input type="submit" value="Reset ProcedimentoModel" name="reset_procedimentoModel">
+       <br><br>
        <input type="submit" value="Reset SessaoModel" name="reset_sessaoModel">
        <br><br>
-       <a>Resultado:</a> {{resultado}}
+     -->
+
    </form>
 
 {% endblock %}

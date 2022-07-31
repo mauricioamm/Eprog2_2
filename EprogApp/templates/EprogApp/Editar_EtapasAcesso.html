@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+
+<html>
+<head>
+	<meta charset= "utf-8">
+	<title>Eprog</title>
+	<style>
+	* {
+  margin: 0;
+  padding: 0;
+} 
+
+body {
+  background-color: #222;
+  font-family: Verdana;
+  font-size: 100%;
+  color: #fff;
+  }
+
+.container {
+  width: 1200px;
+  padding: 10px;  
+  margin: auto;   
+  margin-top: 20px;
+}
+
+section {
+  background-color: #fff;
+  color: #333;
+  width: 1200px;
+  height: 560px;
+  margin-left: 10px;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;    
+}
+
+ul.menu {
+  list-style-type: none;  
+}
+
+
+.btn {
+  width: 120px;
+  height: 30px;
+  border: 1px solid #ddd;  
+}
+
+.inserir{
+  /* background-image: url(../_img/icone-salvar.png);*/
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.salvar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #46aD7a;
+  color: #fff;
+  cursor: pointer;
+}
+  
+.limpar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.excluir {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #ad4656;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+.campinho{
+  width: 50px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 15px;
+}
+
+
+.campo {
+  width:600px;
+  height: 30px;
+  font-family: Arial;
+  color: Blue;
+  font-size: 18px;
+  border-radius: 3px;
+  margin-top: 3px;
+  border: 2px solid #ccc;
+  
+}
+	
+	</style>
+</head>
+<body>
+
+
+</body>
+	<div class="container">
+		<section>
+			<h3>Editar acesso a etapas dos módulos</h3>
+			<hr>
+			<br>
+			
+			<form method="post">
+				{% csrf_token %}
+				<input type="submit" class="btn salvar" value="Salvar" name="Salvar">
+        <input type="submit" class="btn_salvar" value="Sair" name="voltar">
+				<br><br>
+        
+       Módulo01:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso01_preteste">{{ form.Acesso01_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso01_treino">{{ form.Acesso01_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso01_posteste">{{ form.Acesso01_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo02:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso02_preteste">{{ form.Acesso02_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso02_treino">{{ form.Acesso02_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso02_posteste">{{ form.Acesso02_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo03:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso03_preteste">{{ form.Acesso03_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso03_treino">{{ form.Acesso03_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso03_posteste">{{ form.Acesso03_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo04:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso04_preteste">{{ form.Acesso04_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso04_treino">{{ form.Acesso04_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso04_posteste">{{ form.Acesso04_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo05:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso05_preteste">{{ form.Acesso05_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso05_treino">{{ form.Acesso05_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso05_posteste">{{ form.Acesso05_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo06:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso06_preteste">{{ form.Acesso06_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso06_treino">{{ form.Acesso06_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso06_posteste">{{ form.Acesso06_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo07:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso07_preteste">{{ form.Acesso07_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso07_treino">{{ form.Acesso07_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso07_posteste">{{ form.Acesso07_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo08:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso08_preteste">{{ form.Acesso08_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso08_treino">{{ form.Acesso08_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso08_posteste">{{ form.Acesso08_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo09:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso09_preteste">{{ form.Acesso09_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso09_treino">{{ form.Acesso09_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso09_posteste">{{ form.Acesso09_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo10:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso10_preteste">{{ form.Acesso10_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso10_treino">{{ form.Acesso10_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso10_posteste">{{ form.Acesso10_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo11:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso11_preteste">{{ form.Acesso11_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso11_treino">{{ form.Acesso11_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso11_posteste">{{ form.Acesso11_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo12:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso12_preteste">{{ form.Acesso12_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso12_treino">{{ form.Acesso12_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso12_posteste">{{ form.Acesso12_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo13:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso13_preteste">{{ form.Acesso13_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso13_treino">{{ form.Acesso13_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso13_posteste">{{ form.Acesso13_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo14:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso14_preteste">{{ form.Acesso14_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso14_treino">{{ form.Acesso14_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso14_posteste">{{ form.Acesso14_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo15:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso15_preteste">{{ form.Acesso15_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso15_treino">{{ form.Acesso15_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso15_posteste">{{ form.Acesso15_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo16:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso16_preteste">{{ form.Acesso16_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso16_treino">{{ form.Acesso16_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso16_posteste">{{ form.Acesso16_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo17:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso17_preteste">{{ form.Acesso17_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso17_treino">{{ form.Acesso17_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso17_posteste">{{ form.Acesso17_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo18:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso18_preteste">{{ form.Acesso18_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso18_treino">{{ form.Acesso18_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso18_posteste">{{ form.Acesso18_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo19:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso19_preteste">{{ form.Acesso19_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso19_treino">{{ form.Acesso19_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso19_posteste">{{ form.Acesso19_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+       Módulo20:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Pré-Teste:&nbsp;<textarea class="campinho" name="Acesso20_preteste">{{ form.Acesso20_preteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Treino:&nbsp;<textarea class="campinho" name="Acesso20_treino">{{ form.Acesso20_treino.value }}</textarea>&nbsp;&nbsp;&nbsp;
+        Pós_Teste:&nbsp;<textarea class="campinho" name="Acesso20_posteste">{{ form.Acesso20_posteste.value }}</textarea>&nbsp;&nbsp;&nbsp;
+              <br>
+
+
+				<!--{{ form.as_p }}-->
+
+				<br>
+			</form>
+		</section>
+	</div>
+</html>

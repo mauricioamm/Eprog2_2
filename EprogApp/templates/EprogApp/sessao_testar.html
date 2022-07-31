@@ -40,7 +40,7 @@ div#topo2{
 }
 
 div#esquerdo{
-	height:533px;
+	height:500px;
 	width:700px;
 	background-color:#D2B48C;
 	/*border:1px solid #000000;*/
@@ -50,7 +50,7 @@ div#esquerdo{
 }	
 
 div#direito{
-	height:533px;
+	height:500px;
 	width:570px;
 	background-color:#D2B48C;
 	/*padding: 10px;*/
@@ -223,7 +223,7 @@ div#direito{
 }
 
 .porcentagem{
-  width: 45px;
+  width: 30px;
   height: 20px;
   border: 1px solid #ddd;  
   background-repeat: no-repeat;
@@ -258,14 +258,22 @@ div#direito{
 			Participante:<input type="text" name="Participante" class="participante" value= "{{ objetinhoSessao.Participante }} " readonly>
 			<input type="submit" class="btn_Testar" value="Testar" name="Testar">
 			<input type="submit" class="btn_Resposta" value="Resposta" name="Resposta">
-			Sua avaliação:
+			<!--Sua avaliação:
 			<input type="submit" class="btn_Correta" value="Correta/Completa" name="Correta">
 			<input type="submit" class="btn_Incorreta" value="Incorreta/Incompleta" name="Incorreta">
-			<br>
+			<br>-->
 
 		</div>
 		<div class= "content" id="topo2">
-				Ordem:<input type="text" name="Ordem" class="porcentagem" value= "{{ objetinho.Ordem }} " readonly>
+        Módulo:<input type="text" name="Modulo" class="porcentagem" value= "{{ objeto_procedimento.ModuloAtual }} "readonly>
+        Questão:<input type="text" name="Questao" class="porcentagem" value= "{{ objetinho.Numero }} "readonly>
+        <!--&nbsp;-->
+        Corretas:<input type="text" name="Numero" class="porcentagem" value= "{{ objetinho.Acertou }} " readonly> 
+        Total:<input type="text" name="Numero" class="porcentagem" value= "{{ objeto_calculo.TotalModulo }} " readonly> 
+       <!--Corretas:<input type="text" name="Corretas" class="porcentagem" value= "{{ objeto_calculo.Corretas  }} " readonly>-->
+        %Corretas:<input type="text" class="porcentagem" name="porcentagem" value= "{{ objeto_calculo.Porcentagem  }} " readonly>
+
+
 				<!--
 				Acertou:<input type="text" name="Acertou" class="porcentagem" value= "{{ form.Acertou.value }} " readonly>
 				Corretas:<input type="text" name="Tcorretas" class="porcentagem" value= "{{ obj_linhaum.Corretas }} " readonly>
@@ -274,6 +282,7 @@ div#direito{
 
 		</div>
 		<div class= "content" id="esquerdo">
+      No.:<input type="text" name="Ordem" class="porcentagem" value= "{{ objetinho.Ordem }} " readonly>&nbsp;&nbsp;&nbsp;&nbsp;    
 			<label for="esquerdo">Tópico:</label><br><textarea class="Topico" name="Topico" readonly>{{form.Topico.value}}</textarea><br>
 			Sua Resposta:<br><textarea class="SuaResposta" name="SuaResposta">{{ form.SuaResposta.value }}</textarea><br><br>
 		</div>

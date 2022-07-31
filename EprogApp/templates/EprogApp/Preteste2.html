@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+
+<html>
+<head>
+	<meta charset= "utf-8">
+	<title>Eprog</title>
+	<style>
+	* {
+  margin: 0;
+  padding: 0;
+} 
+
+body {
+  background-color: #222;
+  font-family: Verdana;
+  font-size: 100%;
+  color: #fff;
+  }
+
+.container {
+  width: 1200px;
+  padding: 10px;  
+  margin: auto;   
+  margin-top: 20px;
+}
+
+section {
+  background-color: #fff;
+  color: #333;
+  width: 1200px;
+  height: 560px;
+  margin-left: 10px;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;    
+}
+
+ul.menu {
+  list-style-type: none;  
+}
+
+
+.btn {
+  width: 120px;
+  height: 30px;
+  border: 1px solid #ddd;  
+}
+
+.inserir{
+  /* background-image: url(../_img/icone-salvar.png);*/
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.salvar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #46aD7a;
+  color: #fff;
+  cursor: pointer;
+}
+  
+.limpar {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;
+}
+
+.excluir {
+  /* background-image: url(../_img/icone-salvar.png); */
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #ad4656;
+  color: #fff;
+  cursor: pointer;
+}
+
+.campo {
+  width:600px;
+  height: 30px;
+  font-family: Arial;
+  color: Blue;
+  font-size: 18px;
+  border-radius: 3px;
+  margin-top: 3px;
+  border: 2px solid #ccc;
+  
+}
+
+.Textao {
+  width:300px;
+  height: 170px;
+  font-family: Arial;
+  color: Black;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-top: 1px;
+  border: 2px solid #ccc;
+  padding: 5px;
+  float: left;
+  margin:2px;
+}
+
+.btn_Fim{
+  /* background-image: url(../_img/icone-salvar.png);*/
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  background-color: #425490;
+  color: #fff;
+  cursor: pointer;;
+}
+
+	
+	</style>
+</head>
+<body>
+
+
+</body>
+	<div class="container">
+		<section>
+			<h3>Teste inicial</h3>
+			<hr>	
+			<form method="post">
+				{% csrf_token %}
+        Ordem: {{ form.Ordem.value}} <br>
+				<input type="submit" class="btn primeiro" value="<<" name="primeiro">
+				<input type="submit" class="btn anterior" value="<" name="anterior">
+				<input type="submit" class="btn proximo" value=">"  name="proximo">
+				<input type="submit" class="btn ultimo" value=">>" name="ultimo">
+				<input type="submit" class="btn_Fim" value="Voltar à página inicial" name="Sair">&nbsp;&nbsp;
+				<input type="submit" class="btn_Fim" value="Confirmar finalização deste pré-teste" name="Finalizar_preteste">
+				<br><br>
+
+        <div class= "content">
+          Questão:&nbsp;&nbsp;<br>
+          {{form.Questao.value}}<br> 
+          <!--Questão:&nbsp;&nbsp;<br>
+          <textarea name="pergunta" readonly>{{form.Questao.value}}</textarea><br><br><br>--> 
+
+
+        </div>
+
+        É correta APENAS a alternativa:
+        <br> 
+        <br> 
+        <div class= "content">
+          {% if x_Alternativa_A_escolhida == "1" %}
+          <input type="checkbox" value="a"
+            id="alternativa_a" name="alternativas" checked>
+          <label for="alternativa_a">a)&nbsp; {{ objeto_PretesteModel.Alternativa_A }} </label>
+          {% else %}
+          <input type="checkbox" value="a"
+            id="alternativa_a" name="alternativas">
+          <label for="alternativa_a">a)&nbsp; {{ objeto_PretesteModel.Alternativa_A }} </label>      
+          {% endif %}
+        </div>
+        <br> 
+        <div class= "content">
+          {% if x_Alternativa_B_escolhida == "1" %}
+          <input type="checkbox" value="b"
+            id="alternativa_b" name="alternativas" checked>
+          <label for="alternativa_b">b)&nbsp; {{ objeto_PretesteModel.Alternativa_B }} </label>
+          {% else %}
+          <input type="checkbox" value="b"
+            id="alternativa_b" name="alternativas">
+          <label for="alternativa_b">b)&nbsp; {{ objeto_PretesteModel.Alternativa_B }} </label>      
+          {% endif %}
+        </div>
+        <br> 
+        <div class= "content">
+          {% if x_Alternativa_C_escolhida == "1" %}
+          <input type="checkbox" value="c"
+            id="alternativa_c" name="alternativas" checked="true">
+          <label for="alternativa_c">c)&nbsp; {{ objeto_PretesteModel.Alternativa_C }} </label>
+          {% else %}
+          <input type="checkbox" value="c"
+            id="alternativa_c" name="alternativas">
+          <label for="alternativa_c">c)&nbsp; {{ objeto_PretesteModel.Alternativa_C }} </label>      
+          {% endif %}
+        </div>
+        <br> 
+        <div class= "content">
+          {% if x_Alternativa_D_escolhida == "1" %}
+              <input type="checkbox" value="d"
+              id="alternativa_d" name="alternativas" checked="true">
+              <label for="alternativa_d">d)&nbsp; {{ objeto_PretesteModel.Alternativa_D }} </label>
+          {% else %}
+          <input type="checkbox" value="d"
+            id="alternativa_d" name="alternativas">
+          <label for="Alternativa_d">d)&nbsp; {{ objeto_PretesteModel.Alternativa_D }} </label>      
+          {% endif %}
+        </div>
+        <br> 
+        <div class= "content">
+          {% if x_Alternativa_E_escolhida == "1" %}
+          <input type="checkbox" value="E"
+            id="alternativa_e" name="alternativas" checked>
+          <label for="alternativa_e">e)&nbsp; {{ objeto_PretesteModel.Alternativa_E }} </label>
+          {% else %}
+          <input type="checkbox" value="e"
+            id="alternativa_e" name="alternativas">
+          <label for="Alternativa_e">e)&nbsp; {{ objeto_PretesteModel.Alternativa_E }} </label>      
+          {% endif %}
+        </div>
+
+        <br><br>
+        <input type="submit" value="Confirmar" class= "salvar" name="Confirmar">  
+        <br><br>
+			
+      </form>
+		</section>
+	</div>
+</html>

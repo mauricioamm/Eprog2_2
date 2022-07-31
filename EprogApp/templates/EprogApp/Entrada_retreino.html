@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+<style>
+
+.porcentagem{
+  width: 30px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 15px;
+}
+
+.garrafal{
+  width: 30px;
+  height: 20px;
+  border: 1px solid #ddd;  
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 25px;
+}
+
+
+</style>
+
+{% block content %}
+
+	<form method="post">{% csrf_token %}		
+		Oi, {{ user.get_username }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+		Próximo módulo:<input type="text" name="Modulo" value= "{{ objeto_procedimento.ModuloAntigo }} " readonly>
+
+		<br><br><br>
+		<!--Usuário:{{ user.get_username }}<br>
+		Banco:-->
+		Treinar novamente:  
+	    (observação: módulos posteriores ao próximo módulo não estão disponíveis)<br><br>
+
+		<input type="submit" value="	Módulo 1     " name="Módulo1">&nbsp;&nbsp;&nbsp; {{ objeto_modulo1.Descricao }}<br>
+		<input type="submit" value="	Módulo 2     " name="Módulo2">&nbsp;&nbsp;&nbsp; {{ objeto_modulo2.Descricao }}<br>
+		<input type="submit" value="	Módulo 3     " name="Módulo3">&nbsp;&nbsp;&nbsp; {{ objeto_modulo3.Descricao }}<br>
+		<input type="submit" value="	Módulo 4     " name="Módulo4">&nbsp;&nbsp;&nbsp; {{ objeto_modulo4.Descricao }}<br>
+		<input type="submit" value="	Módulo 5     " name="Módulo5">&nbsp;&nbsp;&nbsp; {{ objeto_modulo5.Descricao }}<br>
+		<input type="submit" value="	Módulo 6     " name="Módulo6">&nbsp;&nbsp;&nbsp; {{ objeto_modulo6.Descricao }}<br>
+		<input type="submit" value="	Módulo 7     " name="Módulo7">&nbsp;&nbsp;&nbsp; {{ objeto_modulo7.Descricao }}<br>
+		<input type="submit" value="	Módulo 8     " name="Módulo8">&nbsp;&nbsp;&nbsp; {{ objeto_modulo8.Descricao }}<br>
+		<input type="submit" value="	Módulo 9     " name="Módulo9">&nbsp;&nbsp;&nbsp; {{ objeto_modulo9.Descricao }}<br>
+		<input type="submit" value="	Módulo 10	  " name="Módulo10">&nbsp;&nbsp;&nbsp; {{ objeto_modulo10.Descricao }}<br>
+		<input type="submit" value="	Módulo 11	  " name="Módulo11">&nbsp;&nbsp;&nbsp; {{ objeto_modulo11.Descricao }}<br>
+		<input type="submit" value="	Módulo 12	  " name="Módulo12">&nbsp;&nbsp;&nbsp; {{ objeto_modulo12.Descricao }}<br>
+		<input type="submit" value="	Módulo 13	  " name="Módulo13">&nbsp;&nbsp;&nbsp; {{ objeto_modulo13.Descricao }}<br>
+		<input type="submit" value="	Módulo 14	  " name="Módulo14">&nbsp;&nbsp;&nbsp; {{ objeto_modulo14.Descricao }}<br>
+		<input type="submit" value="	Módulo 15	  " name="Módulo15">&nbsp;&nbsp;&nbsp; {{ objeto_modulo15.Descricao }}<br>
+
+		<!--<input type="submit" value="	Módulo 17	  " name="Módulo17">&nbsp;&nbsp;&nbsp; {{ objeto_procedimento.SobreModulo17 }}<br>
+		<input type="submit" value="	Módulo 18	  " name="Módulo18">&nbsp;&nbsp;&nbsp; {{ objeto_procedimento.SobreModulo18 }}<br>
+		<input type="submit" value="	Módulo 19   " name="Módulo19">&nbsp;&nbsp;&nbsp; {{ objeto_procedimento.SobreModulo19 }}<br>
+		<input type="submit" value="	Módulo 20	  " name="Módulo20">&nbsp;&nbsp;&nbsp; {{ objeto_procedimento.SobreModulo20 }}<br>-->
+
+
+	</form>
+{% endblock %}
+
+
+
+

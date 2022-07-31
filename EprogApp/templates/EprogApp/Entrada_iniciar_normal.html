@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<form method="post">{% csrf_token %}		
+		Oi, {{ user.get_username }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+		Próximo módulo:<input type="text" name="Modulo" value= "{{ objeto_procedimento.ModuloAtual }} " readonly>
+		&nbsp;&nbsp;<input type="submit" value="Começar Sessão" name="comecar_sessao"><br><br>
+
+		<!--<input type="submit" value="Começar Sessão" name="comecar_sessao"><br><br>-->
+		<!--Usuário:{{ user.get_username }}<br>
+		Banco:-->
+
+	</form>
+{% endblock %}
+
+
+
+

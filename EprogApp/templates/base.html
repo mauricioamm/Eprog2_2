@@ -24,6 +24,13 @@ body {
 
 }
 
+.subtitulo {
+  font-family: Verdana;
+  font-size: 100%;
+  color: Green;
+
+}
+
 .container {
   width: 1200px;
   padding: 2px;
@@ -91,9 +98,12 @@ li a {
 }
 
 .btn {
-  width: 120px;
-  height: 20px;
+  width: 300px;
+  height: 40px;
   border: 1px solid #ddd;  
+ /*width: 120px;
+  height: 20px;
+  border: 1px solid #ddd;*/ 
 }
 
 .salvar {
@@ -150,12 +160,12 @@ li a {
 			<ul class="menu">				
 				<li><a href="{% url 'url_entrada'%}"> 				Início 			</a></li>					
 				<li><a href="{% url 'url_Entrada_login'%}"> 		Login 			</a></li>		
-				<li><a href="{% url 'url_Entrada_Iniciar'%}"> 		Iniciar Sessão 			</a></li>		
-				<li><a href="{% url 'url_Entrada_configuracoes'%}"> Configurações 			</a></li>		
-				<li><a href="{% url 'url_Entrada_relatorios'%}"> 	Relatórios 			</a></li>					
-				<li><a href="{% url 'url_Entrada_sobre'%}"> 		Sobre 			</a></li>									
-				<li><a href="{% url 'admin:index' %}"> 				admin 			</a></li>
+        <li><a href="{% url 'url_Entrada_Iniciar'%}">     Iniciar Sessão      </a></li>
+				<!--<li><a href="{% url 'url_Entrada_relatorios'%}"> 	Relatórios 			</a></li>-->				
+				<li><a href="{% url 'url_Entrada_sobre'%}"> 		Sobre 			</a></li>	
+				<!--<li><a href="{% url 'admin:index' %}"> 				admin 			</a></li>-->
 				<li><a href="{% url 'logout' %}"> 					Sair 			</a></li>
+        <li><a href="{% url 'url_Entrada_Experimentador'%}"> Área do Experimentador </a></li>   
 				
 			</ul>
 		</nav>
@@ -176,7 +186,6 @@ li a {
 	<section>		
 		<div class= "titulo"> 
 			<h1>Eprog</h1>
-			<br>
 			<br>
 		</div>
 					
