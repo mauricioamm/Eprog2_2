@@ -828,7 +828,6 @@ def Entrada_Iniciar(request):
     objeto_ProcedimentoModel = ProcedimentoModel.objetos.using(banquinho).get(pk=1)
     x_ModuloAntigo = objeto_procedimento.ModuloAntigo
     objeto_modulos = ModulosModel.objetos.using(banquinho).get(pk=x_ModuloAntigo)
-    objetinho_eprogmodel = EprogModel.objetos.using(banquinho).get(pk=1)
 
     X_modulo_atual = x_ModuloAntigo
     x_ModuloFinal = objeto_procedimento.ModuloFinal
@@ -848,8 +847,6 @@ def Entrada_Iniciar(request):
     modulo_sorteado = obj_sorteio.Modulo
 
     x_AgoraTreino = objeto_procedimento.AgoraTreino
-    # Edição1
-    x_AgoraTreino = '1'
 
 
     if objeto_procedimento.FimUltimoModulo == '1':
@@ -876,12 +873,9 @@ def Entrada_Iniciar(request):
         n_ModuloAntigo = int(x_ModuloAntigo)
         objeto_modulos = ModulosModel.objetos.using(banquinho).get(pk=n_ModuloAntigo)
         x_Modulo_EtapaAtual = objeto_modulos.Modulo_EtapaAtual
-        #Edição
         print('Modulo_EtapaAtual agora é:', x_Modulo_EtapaAtual)
 
         x_Treino_Acesso = objeto_modulos.Treino_Acesso
-        #Edição
-        x_Treino_Acesso = '1'
         x_PreTeste_Acesso = objeto_modulos.PreTeste_Acesso
         x_PosTeste_Acesso = objeto_modulos.PosTeste_Acesso
 
@@ -894,13 +888,6 @@ def Entrada_Iniciar(request):
         x_TemPosTeste = objeto_modulos.TemPosTeste
         x_Modulo_EtapaAtual = objeto_modulos.Modulo_EtapaAtual
 
-        x_tipo = objetinho_eprogmodel.title
-        x_Modulo_EtapaAtual = '2'
-
-        if x_tipo == 'figfig':
-            return redirect('url_sessao_testar_figfig', pk=n_rand)
-            #return redirect('sessao_testar_figfig', pk=n_rand)
-
         if x_Modulo_EtapaAtual == '1' and x_PreTeste_Acesso == '1':
             return redirect('url_Preteste2', pk=n_PreTeste_Primeiro)
 
@@ -909,7 +896,6 @@ def Entrada_Iniciar(request):
 
         if x_Modulo_EtapaAtual == '2' and x_Treino_Acesso == '1':
             return redirect('url_sessao_testar', pk=n_rand)
-
         if x_Modulo_EtapaAtual == '2' and x_Treino_Acesso == '0':
             return redirect('url_Entrada_Iniciar_Indisponivel')
 
@@ -1359,9 +1345,9 @@ def Reset_Models(request):
     objeto_apagarProcedimentoModel.ModuloAtual = '1'
     objeto_apagarProcedimentoModel.ModuloAntigo = '1'
     objeto_apagarProcedimentoModel.Retreino = '0'
-    objeto_apagarProcedimentoModel.AgoraTreino = '1'
+    objeto_apagarProcedimentoModel.AgoraTreino = '0'
 
-    objeto_apagarProcedimentoModel.EtapaAtual = 'Treino'
+    objeto_apagarProcedimentoModel.EtapaAtual = 'pré-teste'
 
     """
     objeto_apagarProcedimentoModel.Etapa01 = '1'
@@ -2070,19 +2056,10 @@ def sessao_view(request, pk):
 
                 if objeto_procedimento.Retreino == '0':
                     num_modulo = int(n_modulo)
-                    objeto_procedimento.AgoraTreino = '1'
+                    objeto_procedimento.AgoraTreino = '0'
                     x_TemPosTeste = objeto_modulos.TemPosTeste
-                    #Edição
-                    num_modulo_atualizado = num_modulo + 1
-                    x_modulo_atualizado = str(num_modulo_atualizado)
-                    objeto_procedimento.ModuloAtual = x_modulo_atualizado
-                    objeto_procedimento.ModuloAntigo = x_modulo_atualizado
-                    objeto_modulos.Modulo_EtapaAtual = '2'
-                    objeto_procedimento.EtapaAtual = 'Treino'
-                    objeto_modulos.save()
-                    objeto_procedimento.save()
 
-                    """
+
                     if x_TemPosTeste == 1:
                         objeto_modulos.Modulo_EtapaAtual = '3'
                         objeto_procedimento.EtapaAtual = 'Pós-teste'
@@ -2097,7 +2074,7 @@ def sessao_view(request, pk):
                         objeto_procedimento.EtapaAtual = 'Pré-teste'
                         objeto_modulos.save()
                         objeto_procedimento.save()
-                    """
+
                     return redirect('url_sessao_fim_modulo', pk=1)
 
                 for item in objeto_eprog_tudo:
@@ -2246,375 +2223,6 @@ def sessao_view(request, pk):
             "porcento_modulo": porcento_modulo,
             }
         return render(request, "EprogApp/sessao.html", context)
-
-@login_required
-def sessao_figfig(request, pk):
-        user = request.user
-        banquinho = str(user)
-        objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
-        obj_linhaum = EprogModel.objetos.using(banquinho).get(pk=1)
-        objeto_sessao = SessaoModel.objetos.using(banquinho).get(pk=1)
-        objeto_sessaoUm = SessaoModel.objetos.using(banquinho).get(pk=1)
-        objeto_procedimento = ProcedimentoModel.objetos.using(banquinho).get(pk=1)
-        objeto_calculo = CalculosModel.objetos.using(banquinho).get(pk=1)
-
-        n_modulo = objeto_procedimento.ModuloAtual
-        objeto_modulos = ModulosModel.objetos.using(banquinho).get(pk=n_modulo)
-        todas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo= n_modulo).count()
-        todas_ativadas = EprogModel.objetos.using(banquinho).filter(Ativada='1', Modulo= n_modulo).count()
-        print("todas módulo: ", todas_modulo, "todas ativadas: ", todas_ativadas)
-
-        quantas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo= n_modulo, Ativada='1').count()
-        corretas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo= n_modulo).filter(Acertou='1').count()
-        porcento_modulo = int((corretas_modulo/quantas_modulo)*100)
-        objeto_calculo.TotalModulo= quantas_modulo
-        objeto_calculo.Porcentagem= porcento_modulo
-        objeto_calculo.Corretas= corretas_modulo
-        objeto_calculo.save()
-        #corretas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo= '3' and Acertou='1').count()
-
-        form = EprogForm(request.POST or None, instance=objetinho)
-
-        if request.POST.get('Salvar'):
-            obj_linhaum = EprogModel.objetos.using(banquinho).get(pk=1)
-            objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
-            form = EprogForm(request.POST or None, instance=objetinho)
-            if form.is_valid():
-                form.save()
-
-            context = {
-                "form": form,
-                "objetinho": objetinho,
-                "obj_linhaum": obj_linhaum,
-                # "objetinho2": objetinho2,
-                "objeto_sessao": objeto_sessao
-            }
-            return render(request, "EprogApp/sessao_figfig.html", context)
-
-        if request.POST.get('Testar'):
-            objetX = EprogModel.objetos.using(banquinho).get(pk=pk)
-            objetX.SuaResposta = ''
-            objetX.save()
-
-            campo = 'id'
-            obj = EprogModel.objetos.using(banquinho).last()
-            valor_campo = getattr(obj, campo)
-            total = valor_campo
-
-            n_rand = randint(1, total)
-            obj_sorteio = EprogModel.objetos.using(banquinho).get(pk=n_rand)
-            SeAcertou = obj_sorteio.Acertou
-            qualmodulo = objeto_procedimento.ModuloAtual
-            modulo_sorteado = obj_sorteio.Modulo
-            x_ativada = obj_sorteio.Ativada
-
-            while SeAcertou == '1' or qualmodulo != modulo_sorteado or x_ativada == '0':
-                n_rand = randint(1, total)
-                obj_sorteio = EprogModel.objetos.using(banquinho).get(pk=n_rand)
-                SeAcertou = obj_sorteio.Acertou
-                modulo_sorteado = obj_sorteio.Modulo
-                x_ativada = obj_sorteio.Ativada
-            return redirect('url_sessao_testar_figfig', pk=n_rand)
-
-        if request.POST.get('Sessao'):
-            return redirect('url_sessao_figfig', pk=pk)
-
-        if request.POST.get('Resposta'):
-            return redirect('url_sessao_figfig', pk=pk)
-
-        if request.POST.get('Sair'):
-            return redirect('url_Entrada_Iniciar')
-            # fazer o logout aqui:
-            # return redirect('logout')
-
-        if request.POST.get('Upload'):
-            # fazer o logout aqui:
-            print('Nada... Está desativado')
-            #return redirect('url_sessao_upload', pk=pk)
-
-        if request.POST.get('Correta'):
-            Objeto_Procedimento = ProcedimentoModel.objetos.using(banquinho).get(pk=1)
-            objeto_calculo = CalculosModel.objetos.using(banquinho).get(pk=1)
-            obj_linhaum = EprogModel.objetos.using(banquinho).get(pk=1)
-            objeto_sessaoUm = SessaoModel.objetos.using(banquinho).get(pk=1)
-            objeto_sessao = SessaoModel.objetos.using(banquinho).get(pk=1)
-            objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
-
-            # Bloco 1 - início
-            objetinho.SuaResposta= ''
-            objetinho.save()
-            objetinho.Acertou = '1'
-            objetinho.Jafoi = '1'
-            objetinho.save()
-
-            corretas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo=n_modulo).filter(Acertou='1').count()
-            porcento_modulo = int((corretas_modulo / quantas_modulo) * 100)
-            objeto_calculo.TotalModulo = quantas_modulo
-            objeto_calculo.Porcentagem = porcento_modulo
-            objeto_calculo.Corretas = corretas_modulo
-            objeto_calculo.save()
-            porcento = objeto_calculo.Porcentagem
-
-            tcorretas = EprogModel.objetos.using(banquinho).filter(Acertou='1').count()
-            obj_linhaum.Corretas = str(tcorretas)
-            obj_linhaum.Porcentagem = str(porcento_modulo)
-            obj_linhaum.save()
-
-            campo = 'id'
-            obj_ult = EprogModel.objetos.using(banquinho).last()
-            total_rec = getattr(obj_ult, campo)
-            tporcentagem = (tcorretas/total_rec)*100
-            if objetinho.id == 1:
-                obj_linhaum.Acertou = '1'
-                obj_linhaum.save()
-            obj_linhaum.save()
-
-            # fim do procedimento
-            if porcento == 100.0:
-                objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
-                obj_linhaum = EprogModel.objetos.using(banquinho).get(pk=1)
-                objeto_sessao = SessaoModel.objetos.using(banquinho).get(pk=1)
-
-                objeto_sessaoUm = SessaoModel.objetos.using(banquinho).get(pk=1)
-                objeto_procedimento = ProcedimentoModel.objetos.using(banquinho).get(pk=1)
-                objeto_eprog_tudo = ProcedimentoModel.objetos.using(banquinho).all()
-                objeto_calculo = CalculosModel.objetos.using(banquinho).get(pk=1)
-
-                n_modulo = objeto_procedimento.ModuloAtual
-                quantas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo=n_modulo).count()
-                corretas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo=n_modulo).filter(Acertou='1').count()
-                porcent_modulo = int((corretas_modulo / quantas_modulo) * 100)
-                objeto_calculo.TotalModulo = quantas_modulo
-                objeto_calculo.Porcentagem = porcent_modulo
-                objeto_calculo.Corretas = corretas_modulo
-                objeto_calculo.save()
-
-                # Populando o arquivo de saída início
-                if Objeto_Procedimento.Botao_avalia == '0':
-                    x_ModuloAntigo = objeto_procedimento.ModuloAntigo
-                    quantos_saida = SessaoModel.objetos.using(banquinho).count()
-                    pk_next = quantos_saida + 1
-                    objeto_saida = SessaoModel.objetos.using(banquinho).last()
-                    objeto_saida.pk = None
-                    objeto_saida.pk = pk_next
-                    objeto_saida.id = pk_next
-                    objeto_saida.save()
-                    objeto_sessao = SessaoModel.objetos.using(banquinho).last()
-                    pk_ultimo = objeto_sessao.pk
-                    objeto_sessao.Dia = str(datetime.date.today())
-                    objeto_sessao.Horario = datetime.datetime.now().strftime('%H:%M:%S')
-                    objeto_sessao.Tentativa = pk_ultimo
-                    objeto_sessao.Ordem = objetinho.Ordem
-                    objeto_sessao.Topico = objetinho.Topico
-                    objeto_sessao.DuvidaComent = objetinho.DuvidaComent
-                    objeto_sessao.Sessao = Objeto_Procedimento.SessaoAtual
-                    objeto_sessao.Acertou = objetinho.Acertou
-                    objeto_sessao.Modulo = x_ModuloAntigo
-                    objeto_sessao.save()
-                    objetinho.Jafoi = '1'  ## mudou de lugar
-                    objetinho.save()
-                    Objeto_Procedimento.Botao_avalia = '1'
-                    Objeto_Procedimento.save()
-                    # Populando o arquivo de saída - fim
-
-                if objeto_procedimento.Retreino == '1':
-                    x_retreino = objeto_procedimento.Retreino
-                    print('retreino é: ', x_retreino)
-                    objeto_eprog_tudo = ProcedimentoModel.objetos.using(banquinho).all()
-                    objeto_calculo = CalculosModel.objetos.using(banquinho).get(pk=1)
-                    objeto_calculo.Porcentagem = '0'
-                    objeto_calculo.Corretas = '0'
-                    objeto_calculo.save()
-
-                    objeto_apagarEprogModel = EprogModel.objetos.using(banquinho).all()
-                    for item in objeto_apagarEprogModel:
-                        item.DuvidaComent = ''
-                        item.Marcador1 = ''
-                        item.Marcador2 = ''
-                        item.Marcador3 = ''
-                        item.Marcador4 = ''
-                        item.Marcador5 = ''
-                        item.Acertou = '0'
-                        item.Jafoi = '0'
-                        item.Corretas = '0'
-                        item.Porcentagem = '0'
-                        item.save()
-
-                    objeto_procedimento.ModuloAtual = objeto_procedimento.ModuloAntigo
-                    objeto_procedimento.Retreino = '0'
-                    objeto_procedimento.save()
-                    return render(request, "EprogApp/sessao_fim_modulo.html")
-
-                if objeto_procedimento.Retreino == '0':
-                    num_modulo = int(n_modulo)
-                    objeto_procedimento.AgoraTreino = '0'
-                    x_TemPosTeste = objeto_modulos.TemPosTeste
-
-
-                    if x_TemPosTeste == 1:
-                        objeto_modulos.Modulo_EtapaAtual = '3'
-                        objeto_procedimento.EtapaAtual = 'Pós-teste'
-                        objeto_modulos.save()
-                        objeto_procedimento.save()
-                    else:
-                        num_modulo_atualizado = num_modulo + 1
-                        x_modulo_atualizado = str(num_modulo_atualizado)
-                        objeto_procedimento.ModuloAtual = x_modulo_atualizado
-                        objeto_procedimento.ModuloAntigo = x_modulo_atualizado
-                        objeto_modulos.Modulo_EtapaAtual = '1'
-                        objeto_procedimento.EtapaAtual = 'Pré-teste'
-                        objeto_modulos.save()
-                        objeto_procedimento.save()
-
-                    return redirect('url_sessao_fim_modulo', pk=1)
-
-                for item in objeto_eprog_tudo:
-                        item.Acertou = '0'
-                        item.Jafoi = '0'
-                        item.save()
-
-                context = {
-                    "form": form,
-                    "objetinho": objetinho,
-                    "obj_linhaum": obj_linhaum,
-                    "objetinhoSessao": objeto_sessao,
-                    "objeto_sessaoUm": objeto_sessaoUm
-                }
-                return render(request, "EprogApp/sessao_fim_modulo.html", context)
-
-            # Bloco 1- fim
-
-            #Populando o arquivo de saída início
-            if Objeto_Procedimento.Botao_avalia == '0':
-                x_ModuloAntigo = objeto_procedimento.ModuloAntigo
-                quantos_saida = SessaoModel.objetos.using(banquinho).count()
-                pk_next = quantos_saida + 1
-                objeto_saida = SessaoModel.objetos.using(banquinho).last()
-                objeto_saida.pk = None
-                objeto_saida.pk = pk_next
-                objeto_saida.id = pk_next
-                objeto_saida.save()
-                objeto_sessao = SessaoModel.objetos.using(banquinho).last()
-                pk_ultimo= objeto_sessao.pk
-                objeto_sessao.Dia = str(datetime.date.today())
-                objeto_sessao.Horario = datetime.datetime.now().strftime('%H:%M:%S')
-                objeto_sessao.Tentativa = pk_ultimo
-                objeto_sessao.Ordem = objetinho.Ordem
-                objeto_sessao.Topico = objetinho.Topico
-                objeto_sessao.Participante = objeto_procedimento.Participante
-                objeto_sessao.DuvidaComent = objetinho.DuvidaComent
-                objeto_sessao.Sessao = Objeto_Procedimento.SessaoAtual
-                objeto_sessao.Acertou = objetinho.Acertou
-                objeto_sessao.Modulo = x_ModuloAntigo
-                objeto_sessao.save()
-                objetinho.Jafoi = '1' ## mudou de lugar
-                objetinho.save()
-                Objeto_Procedimento.Botao_avalia = '1'
-                Objeto_Procedimento.save()
-                # Populando o arquivo de saída - fim
-
-            if tcorretas == total_rec:
-                return redirect('url_parabens_view')
-
-            context = {
-                "form": form,
-                "objetinho": objetinho,
-                "obj_linhaum": obj_linhaum,
-                # "objetinho2": objetinho2,
-                "objetinhoSessao": objeto_sessao,
-                "objeto_sessaoUm": objeto_sessaoUm,
-                "objeto_calculo": objeto_calculo,
-                "objeto_procedimento": objeto_procedimento,
-
-            }
-            return render(request, "EprogApp/sessao_figfig.html", context)
-
-        if request.POST.get('Incorreta'):
-            Objeto_Procedimento = ProcedimentoModel.objetos.using(banquinho).get(pk=1)
-            obj_linhaum = EprogModel.objetos.using(banquinho).get(pk=1)
-            objeto_sessaoUm = SessaoModel.objetos.using(banquinho).get(pk=1)
-            objeto_sessao = SessaoModel.objetos.using(banquinho).get(pk=1)
-            objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
-            # form = EprogForm(request.POST or None, instance=objetinho)
-            # if form.is_valid():
-            #    form.save()
-            # Bloco 1 - início
-            objetinho.SuaResposta = ''
-            objetinho.save()
-            objetinho.Acertou = '0'
-            objetinho.Jafoi = '1'
-            objetinho.save()
-            tcorretas = EprogModel.objetos.using(banquinho).filter(Acertou='1').count()
-            obj_linhaum.Corretas = str(tcorretas)
-            obj_linhaum.save()
-            campo = 'id'
-            obj_ult = EprogModel.objetos.using(banquinho).last()
-            total_rec = getattr(obj_ult, campo)
-            tporcentagem = int((tcorretas / total_rec) * 100)
-            obj_linhaum.Porcentagem = str(tporcentagem)
-            if objetinho.id == 1:
-                obj_linhaum.Acertou = '1'
-                obj_linhaum.save()
-            obj_linhaum.save()
-            # Bloco 1- fim
-
-            # Populando o arquivo de saída início
-            if Objeto_Procedimento.Botao_avalia == '0':
-                quantos_saida = SessaoModel.objetos.using(banquinho).count()
-                pk_next = quantos_saida + 1
-                objeto_saida = SessaoModel.objetos.using(banquinho).last()
-                # n_saida_ultimo = objeto_saida.id
-                objeto_saida.pk = None
-                objeto_saida.pk = pk_next
-                objeto_saida.id = pk_next
-                objeto_saida.save()
-                objeto_sessao = SessaoModel.objetos.using(banquinho).last()
-                pk_ultimo = objeto_sessao.pk
-                # objeto_sessao_ultimo = SessaoModel.objetos.using(banquinho).last()
-                # pk_ultimo = pk_next
-                # objeto_sessao.pk = None
-                objeto_sessao.Dia = str(datetime.date.today())
-                objeto_sessao.Horario = datetime.datetime.now().strftime('%H:%M:%S')
-                objeto_sessao.Tentativa = pk_ultimo
-                # objeto_sessao.Tentativa = pk_ultimo + 1
-                objeto_sessao.Ordem = objetinho.Ordem
-                objeto_sessao.Topico = objetinho.Topico
-                objeto_sessao.DuvidaComent = objetinho.DuvidaComent
-                objeto_sessao.Participante = objetinho.Participante
-                objeto_sessao.Sessao = Objeto_Procedimento.SessaoAtual
-                objeto_sessao.Acertou = objetinho.Acertou
-                objeto_sessao.save()
-                objetinho.Jafoi = '1'  ## mudou de lugar
-                objetinho.save()
-                Objeto_Procedimento.Botao_avalia = '1'
-                Objeto_Procedimento.save()
-                # Populando o arquivo de saída - fim
-
-            context = {
-                "form": form,
-                "objetinho": objetinho,
-                "obj_linhaum": obj_linhaum,
-                # "objetinho2": objetinho2,
-                "objetinhoSessao": objeto_sessao,
-                "objeto_sessaoUm": objeto_sessaoUm,
-                "objeto_calculo": objeto_calculo,
-                "objeto_procedimento": objeto_procedimento,
-            }
-            return render(request, "EprogApp/sessao_figfig.html", context)
-
-        context = {
-            "form": form,
-            "objetinho": objetinho,
-            "obj_linhaum": obj_linhaum,
-            # "objetinho2": objetinho2,
-            "objeto_sessao": objeto_sessao,
-            "objeto_sessaoUm": objeto_sessaoUm,
-            "objeto_procedimento": objeto_procedimento,
-            "objeto_calculo": objeto_calculo,
-            "porcento_modulo": porcento_modulo,
-            }
-        return render(request, "EprogApp/sessao_figfig.html", context)
-
 
 #@login_required
 def sessao_fim_modulo_view(request, pk):
@@ -3093,44 +2701,3 @@ def sessao_testar(request, pk):
         "objeto_calculo": objeto_calculo,
     }
     return render(request, "EprogApp/sessao_testar.html", context)
-
-@login_required
-def sessao_testar_figfig(request, pk):
-    user = request.user
-    banquinho = str(user)
-    # data = {}
-    objeto_procedimento = ProcedimentoModel.objetos.using(banquinho).get(pk=1)
-    objeto_procedimento.Botao_avalia = '0'
-    objeto_procedimento.save()
-    objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
-    objeto_calculo = CalculosModel.objetos.using(banquinho).get(pk=1)
-
-    n_modulo = objeto_procedimento.ModuloAtual
-    quantas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo=n_modulo, Ativada='1').count()
-    corretas_modulo = EprogModel.objetos.using(banquinho).filter(Modulo=n_modulo).filter(Acertou='1').count()
-    porcent_modulo = int((corretas_modulo / quantas_modulo) * 100)
-    objeto_calculo.TotalModulo = quantas_modulo
-    objeto_calculo.Porcentagem = porcent_modulo
-    objeto_calculo.Corretas = corretas_modulo
-    objeto_calculo.save()
-
-    # objetinho2 = CalculosModel.objetos2.get(pk=1)
-    objetinhoSessao = SessaoModel.objetos.using(banquinho).get(pk=1)
-    form = EprogForm(request.POST or None, instance=objetinho)
-
-    if request.POST.get('Resposta'):
-        objetinho = EprogModel.objetos.using(banquinho).get(pk=pk)
-        form = EprogForm(request.POST or None, instance=objetinho)
-        if form.is_valid():
-            form.save()
-        return redirect('url_sessao_figfig', pk=pk)
-
-    context = {
-        "form": form,
-        "objetinho": objetinho,
-        # "objetinho2": objetinho2,
-        "objetinhoSessao": objetinhoSessao,
-        "objeto_procedimento": objeto_procedimento,
-        "objeto_calculo": objeto_calculo,
-    }
-    return render(request, "EprogApp/sessao_testar_figfig.html", context)

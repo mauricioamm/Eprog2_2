@@ -218,24 +218,12 @@ div#direito{
 }
 
 .figurinha {
-	margin-top: 12px;
-	margin-left: 40px;
+  margin-top: 1px;
+  margin-left: 5px;
 }
 
 .porcentagem{
   width: 30px;
-  height: 20px;
-  border: 1px solid #ddd;  
-  background-repeat: no-repeat;
-  background-position: 10% 50%;
-  background-size: 20px;
-  font-family: Arial;
-  color: Black;
-  font-size: 15px;
-}
-
-.porcentagem2{
-  width: 40px;
   height: 20px;
   border: 1px solid #ddd;  
   background-repeat: no-repeat;
@@ -283,7 +271,7 @@ div#direito{
         Questão:<input type="text" name="Questao" class="porcentagem" value= "{{ objetinho.Numero }} "readonly>
         Corretas:<input type="text" name="Numero" class="porcentagem" value= "{{ objetinho.Acertou }} " readonly> 
         Total:<input type="text" name="Numero" class="porcentagem" value= "{{ objeto_calculo.TotalModulo }} " readonly> 
-        %Corretas:<input type="text" name="porcentagem" class="porcentagem2" value= "{{ objeto_calculo.Porcentagem  }} " readonly>
+        %Corretas:<input type="text" name="porcentagem" class="porcentagem" value= "{{ objeto_calculo.Porcentagem  }} " readonly>
         <!--%Corretas:<input type="text" class="porcentagem" name="porcentagem" value= "{{ obj_linhaum.Porcentagem  }} " readonly>-->
 				<input type="submit" class="btn_salvar" value="Sair" name="Sair">
 
@@ -307,8 +295,9 @@ div#direito{
 			<!-- Upload desativado  
       <input type="submit" class="btn_salvar" value="Upload" name="Upload">-->
 			<br>
-            <img src="{{objetinho.OndeFigura1}}" class= "figurinha" width="400" height="330" ><br>
-            {% endif %}
+            <img src="{{objetinho.OndeFigura2}}" class= "figurinha" width="550" height="350" >
+            <br>
+      {% endif %}
 			<br>
 			Dúvidas/Comentários
 			<input type="submit" class="btn_salvar" value="Salvar alterações" name="Salvar">

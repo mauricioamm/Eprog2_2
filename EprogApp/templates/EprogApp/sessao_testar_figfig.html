@@ -2,7 +2,7 @@
 	{% load static %}
 <html lang="pt-br">
 <head>
-	<title>Fim do módulo</title>
+	<title>Testando</title>
 	<meta charset="utf-8">
 	<!--<link rel="stylesheet" href="principal.css"/>-->
 	<!--<link rel="stylesheet" href="{% static 'principal.css' %}">-->
@@ -40,7 +40,7 @@ div#topo2{
 }
 
 div#esquerdo{
-	height:533px;
+	height:500px;
 	width:700px;
 	background-color:#D2B48C;
 	/*border:1px solid #000000;*/
@@ -50,7 +50,7 @@ div#esquerdo{
 }	
 
 div#direito{
-	height:533px;
+	height:500px;
 	width:570px;
 	background-color:#D2B48C;
 	/*padding: 10px;*/
@@ -152,7 +152,7 @@ div#direito{
 
 .Textao {
   width:680px;
-  height: 270px;
+  height: 230px;
   font-family: Arial;
   color: Black;
   font-size: 14px;
@@ -257,24 +257,56 @@ div#direito{
 	<form method="post">
 	{% csrf_token %}
 		<div class= "content" id="topo1">
-        Treino deste módulo finalizado. Parabéns!&nbsp;&nbsp; 
-        <!--Próxima etapa: pós-teste deste módulo-->
-        <input type="submit" class="btn_salvar" value="Sair" name="Sair">
+			Participante:<input type="text" name="Paricipante" class="participante" value= "{{ objeto_sessaoUm.Participante }} " readonly>
+			<input type="submit" class="btn_Resposta" value="Resposta" name="Resposta">
+			<!--
+      Sua avaliação:
+			<input type="submit" class="btn_Correta" value="Correta/Completa" name="Correta">
+			<input type="submit" class="btn_Incorreta" value="Incorreta/Incompleta" name="Incorreta">
+    -->
 			<br>
 
 		</div>
 		<div class= "content" id="topo2">
-
+        Módulo:<input type="text" name="Modulo" class="porcentagem" value= "{{ objeto_procedimento.ModuloAtual }} "readonly>
+        Questão:<input type="text" name="Questao" class="porcentagem" value= "{{ objetinho.Numero }} "readonly>
+        Corretas:<input type="text" name="Numero" class="porcentagem" value= "{{ objetinho.Acertou }} " readonly> 
+        Total:<input type="text" name="Numero" class="porcentagem" value= "{{ objeto_calculo.TotalModulo }} " readonly> 
+        %Corretas:<input type="text" name="porcentagem" class="porcentagem" value= "{{ objeto_calculo.Porcentagem  }} " readonly>
+        <!--%Corretas:<input type="text" class="porcentagem" name="porcentagem" value= "{{ obj_linhaum.Porcentagem  }} " readonly>-->
+				<input type="submit" class="btn_salvar" value="Sair" name="Sair">
 
 		</div>
-		
 		<div class= "content" id="esquerdo">
-      
+      No.:<input type="text" name="Ordem" class="porcentagem" value= "{{ objetinho.Ordem }} " readonly>&nbsp;&nbsp;&nbsp;&nbsp;   
+      <br>
+      <br>
+        <img src="{{objetinho.OndeFigura1}}" class= "figurinha" width="400" height="330" ><br>
+      <br> 
+	 
 		</div>
 		<div class= "content" id="direito">
+     	{% if objetinho.OndeFigura1 %}
+			<!-- Upload desativado  
+      <input type="submit" class="btn_salvar" value="Upload" name="Upload">-->
+			<br>
+      <!--
+            <img src="{{objetinho.OndeFigura2}}" class= "figurinha" width="400" height="330" ><br>
+      -->
+      {% endif %}
+			<br>
+			Dúvidas/Comentários
+			<input type="submit" class="btn_salvar" value="Salvar alterações" name="Salvar">
+			<br><textarea class="DuvidaComent" name="DuvidaComent">{{form.DuvidaComent.value}}</textarea><br><br>
 
 		</div>
-
+    {% if messages %}
+      <ul class="messages">
+       {% for message in messages %}
+       <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+       {% endfor %}
+    </ul>
+    {% endif %}
 	</form>
 
 	<script>

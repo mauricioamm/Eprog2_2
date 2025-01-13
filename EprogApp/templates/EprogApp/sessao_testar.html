@@ -218,8 +218,8 @@ div#direito{
 }
 
 .figurinha {
-	margin-top: 12px;
-	margin-left: 40px;
+  margin-top: 1px;
+  margin-left: 5px;
 }
 
 .porcentagem{
@@ -287,7 +287,14 @@ div#direito{
 			Sua Resposta:<br><textarea class="SuaResposta" name="SuaResposta">{{ form.SuaResposta.value }}</textarea><br><br>
 		</div>
 		<div class= "content" id="direito">
-
+			<br>
+	  {% if objetinho.OndeFigura1 %}
+			<!-- Upload desativado  
+      <input type="submit" class="btn_salvar" value="Upload" name="Upload">-->
+            <img src="{{objetinho.OndeFigura1}}" class= "figurinha" width="550" height="350" >
+            <br>
+      {% endif %}
+			<br>
 
 		</div>
 	</form>

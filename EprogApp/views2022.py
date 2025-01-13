@@ -848,8 +848,6 @@ def Entrada_Iniciar(request):
     modulo_sorteado = obj_sorteio.Modulo
 
     x_AgoraTreino = objeto_procedimento.AgoraTreino
-    # Edição1
-    x_AgoraTreino = '1'
 
 
     if objeto_procedimento.FimUltimoModulo == '1':
@@ -876,12 +874,9 @@ def Entrada_Iniciar(request):
         n_ModuloAntigo = int(x_ModuloAntigo)
         objeto_modulos = ModulosModel.objetos.using(banquinho).get(pk=n_ModuloAntigo)
         x_Modulo_EtapaAtual = objeto_modulos.Modulo_EtapaAtual
-        #Edição
         print('Modulo_EtapaAtual agora é:', x_Modulo_EtapaAtual)
 
         x_Treino_Acesso = objeto_modulos.Treino_Acesso
-        #Edição
-        x_Treino_Acesso = '1'
         x_PreTeste_Acesso = objeto_modulos.PreTeste_Acesso
         x_PosTeste_Acesso = objeto_modulos.PosTeste_Acesso
 
@@ -895,8 +890,6 @@ def Entrada_Iniciar(request):
         x_Modulo_EtapaAtual = objeto_modulos.Modulo_EtapaAtual
 
         x_tipo = objetinho_eprogmodel.title
-        x_Modulo_EtapaAtual = '2'
-
         if x_tipo == 'figfig':
             return redirect('url_sessao_testar_figfig', pk=n_rand)
             #return redirect('sessao_testar_figfig', pk=n_rand)
@@ -1359,9 +1352,9 @@ def Reset_Models(request):
     objeto_apagarProcedimentoModel.ModuloAtual = '1'
     objeto_apagarProcedimentoModel.ModuloAntigo = '1'
     objeto_apagarProcedimentoModel.Retreino = '0'
-    objeto_apagarProcedimentoModel.AgoraTreino = '1'
+    objeto_apagarProcedimentoModel.AgoraTreino = '0'
 
-    objeto_apagarProcedimentoModel.EtapaAtual = 'Treino'
+    objeto_apagarProcedimentoModel.EtapaAtual = 'pré-teste'
 
     """
     objeto_apagarProcedimentoModel.Etapa01 = '1'
@@ -2070,19 +2063,10 @@ def sessao_view(request, pk):
 
                 if objeto_procedimento.Retreino == '0':
                     num_modulo = int(n_modulo)
-                    objeto_procedimento.AgoraTreino = '1'
+                    objeto_procedimento.AgoraTreino = '0'
                     x_TemPosTeste = objeto_modulos.TemPosTeste
-                    #Edição
-                    num_modulo_atualizado = num_modulo + 1
-                    x_modulo_atualizado = str(num_modulo_atualizado)
-                    objeto_procedimento.ModuloAtual = x_modulo_atualizado
-                    objeto_procedimento.ModuloAntigo = x_modulo_atualizado
-                    objeto_modulos.Modulo_EtapaAtual = '2'
-                    objeto_procedimento.EtapaAtual = 'Treino'
-                    objeto_modulos.save()
-                    objeto_procedimento.save()
 
-                    """
+
                     if x_TemPosTeste == 1:
                         objeto_modulos.Modulo_EtapaAtual = '3'
                         objeto_procedimento.EtapaAtual = 'Pós-teste'
@@ -2097,7 +2081,7 @@ def sessao_view(request, pk):
                         objeto_procedimento.EtapaAtual = 'Pré-teste'
                         objeto_modulos.save()
                         objeto_procedimento.save()
-                    """
+
                     return redirect('url_sessao_fim_modulo', pk=1)
 
                 for item in objeto_eprog_tudo:

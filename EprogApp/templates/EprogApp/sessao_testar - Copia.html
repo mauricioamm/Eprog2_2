@@ -40,7 +40,7 @@ div#topo2{
 }
 
 div#esquerdo{
-	height:533px;
+	height:500px;
 	width:700px;
 	background-color:#D2B48C;
 	/*border:1px solid #000000;*/
@@ -50,7 +50,7 @@ div#esquerdo{
 }	
 
 div#direito{
-	height:533px;
+	height:500px;
 	width:570px;
 	background-color:#D2B48C;
 	/*padding: 10px;*/
@@ -233,6 +233,18 @@ div#direito{
   color: Black;
   font-size: 15px;
 }
+
+.participante{
+  width: 80px;
+  height: 20px;
+  border: 1px solid #ddd;
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
+  background-size: 20px;
+  font-family: Arial;
+  color: Black;
+  font-size: 15px;
+}
 	</style>
 
 </head>
@@ -243,34 +255,36 @@ div#direito{
 	<form method="post">
 	{% csrf_token %}
 		<div class= "content" id="topo1">
+			Participante:<input type="text" name="Participante" class="participante" value= "{{ objetinhoSessao.Participante }} " readonly>
 			<input type="submit" class="btn_Testar" value="Testar" name="Testar">
 			<input type="submit" class="btn_Resposta" value="Resposta" name="Resposta">
-			Sua avaliação:
+			<!--Sua avaliação:
 			<input type="submit" class="btn_Correta" value="Correta/Completa" name="Correta">
 			<input type="submit" class="btn_Incorreta" value="Incorreta/Incompleta" name="Incorreta">
-			<br>
+			<br>-->
 
 		</div>
 		<div class= "content" id="topo2">
-			    <!--<textarea class="porcentagem" name="Ordem">{{ objetinho.Ordem }}</textarea>
-				Acertou:<textarea class="porcentagem" name="Acertou">{{ objetinho.Acertou }}</textarea>
-				Jafoi:<textarea class="porcentagem" name="Jafoi">{{ objetinho.Jafoi }}</textarea>
-				<input type="text" name="tentativa" class="porcentagem" value= "{{ objetinho2.Ordem }} ">-->
-				Ordem:<input type="text" name="Ordem" class="porcentagem" value= "{{ objetinho.Ordem }} " readonly>
-				<!--Porcentagem: <input type="text" class="porcentagem" name="porcentagem" value= "{{ objetinho2.Porcentagem }} "> <br>-->
-									<!--onclick= "somar()">
-    								<div id="res">0 </div>-->
-				Corretas
-				<input type="text" name="corretas" class="porcentagem" value= "{{ objetinho2.Corretas }} " readonly>
-				X
-				<input type="text" name="incorretas" class="porcentagem" value="{{ objetinho2.Incorretas }}" readonly>
-				Incorretas
+        Módulo:<input type="text" name="Modulo" class="porcentagem" value= "{{ objeto_procedimento.ModuloAtual }} "readonly>
+        Questão:<input type="text" name="Questao" class="porcentagem" value= "{{ objetinho.Numero }} "readonly>
+        <!--&nbsp;-->
+        Corretas:<input type="text" name="Numero" class="porcentagem" value= "{{ objetinho.Acertou }} " readonly> 
+        Total:<input type="text" name="Numero" class="porcentagem" value= "{{ objeto_calculo.TotalModulo }} " readonly> 
+       <!--Corretas:<input type="text" name="Corretas" class="porcentagem" value= "{{ objeto_calculo.Corretas  }} " readonly>-->
+        %Corretas:<input type="text" class="porcentagem" name="porcentagem" value= "{{ objeto_calculo.Porcentagem  }} " readonly>
+
+
+				<!--
+				Acertou:<input type="text" name="Acertou" class="porcentagem" value= "{{ form.Acertou.value }} " readonly>
+				Corretas:<input type="text" name="Tcorretas" class="porcentagem" value= "{{ obj_linhaum.Corretas }} " readonly>
+				Porcentagem: <input type="text" class="porcentagem" name="porcentagem" value= "{{ obj_linhaum.Porcentagem }} " readonly> <br>
+				-->
 
 		</div>
 		<div class= "content" id="esquerdo">
+      No.:<input type="text" name="Ordem" class="porcentagem" value= "{{ objetinho.Ordem }} " readonly>&nbsp;&nbsp;&nbsp;&nbsp;    
 			<label for="esquerdo">Tópico:</label><br><textarea class="Topico" name="Topico" readonly>{{form.Topico.value}}</textarea><br>
-			<!--Texto:<br><textarea class="Textao" name="Textao"></textarea><br><br>-->
-			Sua Resposta:<br><textarea class="SuaResposta" name="SuaResposta">{{form.SuaResposta.value}}</textarea><br><br>
+			Sua Resposta:<br><textarea class="SuaResposta" name="SuaResposta">{{ form.SuaResposta.value }}</textarea><br><br>
 		</div>
 		<div class= "content" id="direito">
 

@@ -3,8 +3,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from EprogApp.views import principal_hidden, delete, criar, \
-        teste_view, teste2_view, sessao_view, comecar_sessao_view, criar_tabela, clonar_model, \
-        update, sessao_testar, parabens_view, entrada, sessao_fim_modulo_view, sessao_fim_modulo_final_view,\
+        teste_view, teste2_view,\
+        sessao_view, sessao_figfig,\
+        comecar_sessao_view, criar_tabela, clonar_model, \
+        update, \
+        sessao_testar, sessao_testar_figfig,\
+        parabens_view, entrada, sessao_fim_modulo_view, sessao_fim_modulo_final_view,\
         Entrada_Iniciar, Entrada_configuracoes, Entrada_relatorios, Entrada_sobre, Entrada_login,\
         teste_loop, \
         Editar_EprogModel, Editar_CalculosModel, Editar_ProcedimentoModel, Editar_SessaoModel,\
@@ -45,9 +49,13 @@ urlpatterns = [
     path('delete/<int:pk>/', delete, name='url_delete'),
     path('update/<int:pk>/', update, name='url_update'),
     path('sessao/<int:pk>/', sessao_view, name='url_sessao'),
+    path('sessao_figfig/<int:pk>/', sessao_figfig, name='url_sessao_figfig'),
+
     path('sessao_fim_modulo/<int:pk>/', sessao_fim_modulo_view, name='url_sessao_fim_modulo'),
     path('sessao_fim_modulo_final/', sessao_fim_modulo_final_view, name='url_sessao_fim_modulo_final'),
     path('sessao_testar/<int:pk>/', sessao_testar, name='url_sessao_testar'),
+    path('sessao_testar_figfig/<int:pk>/', sessao_testar_figfig, name='url_sessao_testar_figfig'),
+
     path('comecar_sessao/', comecar_sessao_view, name='url_comecar_sessao'),
     path('Editar_EprogModel/<int:pk>', Editar_EprogModel, name='url_Editar_EprogModel'),
     path('Editar_Preteste/<int:pk>', Editar_Preteste, name='url_Editar_Preteste'),
